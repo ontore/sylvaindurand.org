@@ -32,14 +32,3 @@ defaults:
     values:
       type: pages
       desc: "Personnal website mostly about programming in Python, Ruby, TeX, R..."
-
-  -
-    scope:
-      path: _posts/fr/projects
-    values:
-      type: projects
-  -
-    scope:
-      path: _posts/en/projects
-    values:
-      type: projects

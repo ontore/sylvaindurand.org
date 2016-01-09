@@ -18,5 +18,5 @@
 	{% assign t = t | replace: ' ?', '<span style="white-space:nowrap">&thinsp;</span>?' %}
 {% endif %}
 
-{% endcapture %}{% if t3.size == 2 %}<pre>{{ t3.first }}</pre>{% endif %}{{ t }}{% endfor %}
+{% endcapture %}{% if t3.size == 2 %}<pre>{{ t3.first | newline_to_br | replace: "<br />", "</code><br /><code>" | strip_newlines | replace: "<code></code>", ""}}</pre>{% endif %}{{ t }}{% endfor %}
 {% endcapture %}{{ t0.first }}</head>{{ export }}

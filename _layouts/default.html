@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=0.85">
-  <meta name="description" content="{% if page.desc %}{{ page.desc | strip_html }}{% else %}{{ page.excerpt | strip_html | replace: "[[", " ("  | replace: "]]", ")" | strip_newlines }}{% endif %}">
+  <meta name="description" content="{% if page.desc %}{{ page.desc }}{% else %}{{ page.excerpt | strip_html | strip_newlines | replace: "[[", " ("  | replace: "]]", ")" }}{% endif %}">
   <title>{{page.title | strip_html}} – Sylvain Durand</title>
   <link rel="icon" href="/medias/elements/favicon.ico" />
   <link rel="alternate" href="/rss.xml" type="application/rss+xml" />
@@ -33,10 +33,30 @@
 <h1 style="background-image: url('/medias/headers/{{ page.date | date:'%Y-%m-%d' }}.jpg')">{{ page.title }}</h1>
 
 <div class="article">
-{% if page.type != 'pages' %}
-<p class="date">{% include date.html date=page.date %}</p>
+
+{% if page.type != 'pages' %}<p class="date">{% include date.html date=page.date %}</p>{% endif %}
+
+{% assign content = content | split: '<pre' %}{% for parts in content %}{% capture hide %}
+{% assign part = parts | split: '</pre>' %}
+{% assign c = part.first %}
+{% assign t = part.last %}
+
+{% assign t = t | replace: '&#39;', '’' | replace: '~', '&nbsp;' %}
+{% assign t = t | replace: 'LaTeX', '<span class="latex">L<sup>a</sup>T<sub>e</sub>X</span>' %}
+{% assign t = t | replace: '[[', '<span class="as"></span><span class="br"> (</span><span class="mar">' %}
+{% assign t = t | replace: ']]', '</span><span class="br">)</span>' %}
+
+{% if page.lang == 'fr' %}
+  {% assign t = t | replace: '&ldquo;' , '«&#160;' | replace: '&rdquo;' , '&#160;»' %}
+  {% assign t = t | replace: ' :',       '&#160;:' | replace: ' %',       '&#160;%' %}
+  {% assign t = t | replace: ' ;', '<span style="white-space:nowrap">&thinsp;</span>;' %}
+  {% assign t = t | replace: ' !', '<span style="white-space:nowrap">&thinsp;</span>!' %}
+  {% assign t = t | replace @: ' ?', '<span style="white-space:nowrap">&thinsp;</span>?' %}
 {% endif %}
-{{ content }}
+
+{% endcapture %}
+{% if part.size == 2 %}<pre{{ c | newline_to_br | replace: "<br />", "</code><br /><code>" | strip_newlines | replace: "<code></code>", ""}}</pre>{% endif %}
+{{ t }}{% endfor %}
 <hr/>
 </div>
 

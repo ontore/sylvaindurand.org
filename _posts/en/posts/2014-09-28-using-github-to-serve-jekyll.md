@@ -36,6 +36,7 @@ Let's start by creating a `.gitignore` file which will allow us to ignore the `_
 
 ```bash
 _site
+.jekyll-metadata
 Gemfile.lock
 .DS_Store
 ```

@@ -1,10 +1,6 @@
 permalink: /:title/
 base: https://www.sylvaindurand.org
 
-markdown: redcarpet
-redcarpet:
-  extensions: ['smart', 'superscript']
-
 gems:
   - jekyll-redirect-from
 

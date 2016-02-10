@@ -1,6 +1,9 @@
 permalink: /:title/
 base: https://www.sylvaindurand.org
 
+kramdown:
+  input: GFM
+
 gems:
   - jekyll-redirect-from
 

@@ -1,5 +1,6 @@
 ---
 title: Using <em>CSS</em> to add<br/> line numbering
+lang: en
 ---
 
 When you want to display a code listing with *HTML*, you use a `<pre>` tag in order to indicate that the text is preformatted[[and therefore the spaces and line breaks must be respected]], then inside one or multiple `<code>` tags to specify this text is a code.

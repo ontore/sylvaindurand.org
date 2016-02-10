@@ -1,5 +1,6 @@
 ---
 title: Website delivery <br/> with <em>Cloudfront</em>
+lang: en
 redirect_from: /static-website-with-cloudfront/
 ---
 

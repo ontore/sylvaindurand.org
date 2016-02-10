@@ -1,5 +1,6 @@
 ---
-title: Setting up an <em>Nginx</em> <br/>web server on OS X 
+title: Setting up an <em>Nginx</em> <br/>web server on OS X
+lang: en
 ---
 
 Seeking a satisfactory solution to create a local web server for programming in OS X with PHP and MySQL, I was disappointed that the turnkey solutions were far from equaling the WAMP that may exist on Windows.

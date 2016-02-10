@@ -1,5 +1,6 @@
 ---
 title:  Getting a web<br/> server with <em>Nginx</em>
+lang: en
 redirect_from: /synchronize-calendars-and-contacts-with-owncloud/
 ---
 

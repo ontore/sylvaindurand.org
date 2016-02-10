@@ -1,5 +1,6 @@
 ---
 title:  Obtenir un serveur<br/> web avec <em>Nginx</em>
+lang: fr
 redirect_from: /synchroniser-calendriers-et-contacts-avec-owncloud/
 ---
 

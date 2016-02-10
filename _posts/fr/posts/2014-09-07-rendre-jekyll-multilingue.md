@@ -1,5 +1,6 @@
 ---
 title: Rendre <em>Jekyll</em> <br/> multilingue
+lang: fr
 redirect_from: /site-multilingue-avec-jekyll/
 ---
 

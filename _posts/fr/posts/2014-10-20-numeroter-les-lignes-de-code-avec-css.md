@@ -1,5 +1,6 @@
 ---
 title: Numéroter les lignes <br/> de code avec <em>CSS</em>
+lang: fr
 ---
 
 Lorsque l'on souhaite afficher un bloc de lignes de code en HTML, on utilise une balise `<pre>`, pour indiquer que le texte est préformaté[[et donc en particulier que les espaces et sauts de ligne doivent être respectés]] dans laquelle on place une balise ou plusieurs balises `<code>`, pour indiquer qu'il s'agit bien de code.

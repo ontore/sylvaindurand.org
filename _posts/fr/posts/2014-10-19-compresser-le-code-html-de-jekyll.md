@@ -1,5 +1,6 @@
 ---
 title: Compresser le HTML <br/> produit par <em>Jekyll</em>
+lang: fr
 ---
 
 La syntaxe *Liquid* utilisée par *Jekyll* a le désagréable défaut de générer des quantités importantes d'espaces et de sauts de ligne inutiles dans le code source de notre page. C'est particulièrement vrai lorsque l'on souhaite indenter ses codes *Liquid*, ou que l'on utilise des boucles. Ainsi, la source suivante :

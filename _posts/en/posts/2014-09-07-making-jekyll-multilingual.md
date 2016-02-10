@@ -1,5 +1,6 @@
 ---
 title: Making <em>Jekyll</em> <br/> multilingual
+lang: en
 redirect_from: /multilingual-website-with-jekyll/
 ---
 

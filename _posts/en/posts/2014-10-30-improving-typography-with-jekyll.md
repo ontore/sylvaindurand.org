@@ -1,5 +1,6 @@
 ---
 title: Improving typography <br/> with <em>Jekyll</em>
+lang: en
 ---
 
 Observing typographical rules on the Internet is not always easy. Although Unicode reserves many areas of characters for typographic symbols, many punctuation marks and spaces are most of the time unused.

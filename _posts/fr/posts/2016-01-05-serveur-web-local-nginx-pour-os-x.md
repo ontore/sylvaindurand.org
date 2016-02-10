@@ -1,5 +1,6 @@
 ---
 title: Serveur web local<br/> <em>Nginx</em> pour OS X
+lang: fr
 ---
 
 Cherchant une solution satisfaisante pour créer un serveur web local permettant de programmer sous OS X avec PHP et MySQL, j'ai été déçu de constater que les solutions «~clés en main~» étaient loin d'égaler les WAMP  qui peuvent exister sous Windows.

@@ -1,5 +1,6 @@
 ---
 title: Servir son site <br/> avec <em>Cloudfront</em>
+lang: fr
 redirect_from: /site-statique-avec-cloudfront/
 ---
 

@@ -1,5 +1,6 @@
 ---
 title: Compressing <em>Jekyll</em> <br/> generated HTML
+lang: en
 ---
 
 The *Liquid* syntax used by *Jekyll* has an unpleasant default: it generates significant spaces and unneccessary line breaks in the generated pages source code. This is especially true when you want to indent your *Liquid* code, or want to use loops. Thus, the following source:

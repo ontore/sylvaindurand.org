@@ -3,14 +3,11 @@ rvm:
   - 2.2
 
 install:
-  - export PATH=$HOME/.local/bin:$PATH
-  - pip install --user html5validator
   - gem install github-pages html-proofer
 
 script:
   - jekyll build
-  - htmlproof ./_site
-  - html5validator --root ./_site
+  - htmlproof --check-html ./_site
 
 branches:
   only:

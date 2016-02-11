@@ -1,6 +1,6 @@
 {%
 
-  assign content = content | split: '<pre class="highlight">' %}{%
+  assign content = content | split: '<pre' %}{%
 
   for parts in content %}{%
 
@@ -29,10 +29,7 @@
     if part.size == 2
 
       %}
-  <pre>{{ c | newline_to_br
-            | replace: "<br />", "</code><br /><code>"
-            | strip_newlines
-            | replace: "<code></code>", ""}}</pre>{%
+<pre{{ c }}</pre>{%
 
     endif
 

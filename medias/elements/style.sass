@@ -50,7 +50,7 @@ h1, h2, hr, .date, .nav, .foot
   text-align: center
 
 p
-  +padding($main,1,0)
+  +padding($main,.5,.5)
 
 // Titles
 
@@ -156,7 +156,7 @@ sup
   font-size: 0.8em
 
 .date
-  +padding(19,3,1)
+  +padding(19,2.5,1)
   +font(19)
   font-style: italic
   color: #ccc
@@ -247,31 +247,14 @@ hr
 code
   font-family: PT Sans, Calibri, Arial, sans
   color: #4D4E53
-  line-height: 1
+  line-height: 1.5
 
 pre
   +padding($main,.5,.5,.75)
   font-family: monospace, monospace
-  margin: $line/$main/2+em 0 $line/$main/2+em -6px
   overflow-x: auto
   background: #f5f5f5
-  counter-reset: line
   border-left: 6px solid #eee
-  line-height: 0
-  code
-    counter-increment: line
-    +font(18)
-    &:before
-      +font(10)
-      display: block
-      float: left
-      clear: both
-      color: #ddd
-      width: 2em
-      padding: 0
-      font-weight: bold
-      content: counter(line)
-      -webkit-user-select: none
 
 .ge,.gs
   color: #93a1a1
@@ -332,9 +315,6 @@ pre
 
     a:hover
       color: #aaa
-
-#instantclick
-  display: none
 
 // LaTeX logo
 

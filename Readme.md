@@ -7,7 +7,7 @@ This repository is the source code of the personnal website [sylvaindurand.org](
 
 1. Clone the repo: `git clone https://github.com/sylvaindurand/sylvaindurand.org.git`
 2. Open the folder: `cd sylvaindurand.org`
-3. Install the dependencies: `gem install github-pages` (with *Ruby* 2.1.1)
+3. Install the dependencies: `gem install github-pages` (with *Ruby*)
 4. Build the website: `jekyll serve`
 5. Look at [localhost:4000](http://localhost:4000): surprise!
 

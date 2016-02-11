@@ -20,27 +20,15 @@ This article will show how to install (I) and use (II) the [*Jekyll*](http://jek
 
 ## First website with *Jekyll*
 
-As a first step, we will see how to install *Jekyll* on your computer, in order to create your first website and get a local host allowing us to watch it in your browser.
-
 ### Installation of *Jekyll*
 
-*On Linux*, directly install the last stable version of [*Ruby*](https://packages.debian.org/stable/ruby)[[it is also possible to install [Ruby version manager](http://rvm.io/)]], with its [developpement tools](https://packages.debian.org/stable/ruby-dev) and [gem](https://packages.debian.org/stable/rubygems). On *Debian*, you just have to install the following packages:
+Directly install the last stable version of *Ruby*, or [RVM](http://rvm.io/), then simply launch:
 
 ```bash
-sudo apt-get install ruby ruby-dev libgsl-ruby rubygems
-sudo gem install jekyll
-```
-
-*On Mac OS X*, first install [*Homebrew*](http://brew.sh/)[[if you don't already have them, a window will ask you to install the "Command Line Tools": you need to install them]] and [*Ruby version manager*](http://rvm.io/) with the last stable version of *Ruby*, then install *Jekyll*:
-
-```bash
-ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
-\curl -L https://get.rvm.io | bash -s stable --ruby
-source ~/.rvm/scripts/rvm
 gem install jekyll
 ```
 
-*On Windows*, it is less easy to install *Jekyll*. However, [Julian Thilo](http://jekyll-windows.juthilo.com/) wrote a [very detailed guide](http://jekyll-windows.juthilo.com/) about how to do it.
+*On Windows*, it is less easy to install *Jekyll*; however, [Julian Thilo](http://jekyll-windows.juthilo.com/) wrote a [very detailed guide](http://jekyll-windows.juthilo.com/) about how to do it.
 
 ### Creation of a new website
 

@@ -23,7 +23,7 @@ In your profile page, choose *Repositories* then *New* in order to create the re
 
 Choose the *Initialize this repository with a README* option in order to be able to use directly `git clone`.
 
-If you have got a *GitHub* paid plans, you can create a private repositoty in order to hide your codes[[in the case of a simple *Jekyll* website, this option may not be really useful]].
+If you have got a *GitHub* paid plans, you can create a private repository in order to hide your codes[[in the case of a simple *Jekyll* website, this option may not be really useful]].
 
 ### Synchronizing our local folder
 On your computer, create the folder where the website will be stored, then open a terminal and clone the newly created repository:

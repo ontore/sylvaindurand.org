@@ -1,6 +1,8 @@
 permalink: /:title/
 base: https://www.sylvaindurand.org
 
+future: true
+
 kramdown:
   input: GFM
 

@@ -36,8 +36,43 @@
 {% include date.html date=page.date %}{% if page.type != 'pages' %}
 <p class="date">{{ day }}{{ sup }} {{ month }} {{ year }}</p>
 {% endif %}
-{% include typo.html %}
-<hr/>
+{% capture hide %}
+  {% assign content = content | split: '<pre' %}
+
+  {% for parts in content %}
+
+    {% assign part = parts | split: '</pre>' %}
+    {% assign c = part.first %}
+    {% assign t = part.last %}
+
+    {% assign t = t | replace: '~', '&nbsp;'
+                    | replace: 'LaTeX', '<span class="latex">L<sup>a</sup>T<sub>e</sub>X</span>'
+                    | replace: '[[', '<span class="as"></span><span class="br"> (</span><span class="mar">'
+                    | replace: ']]', '</span><span class="br">)</span>' %}
+
+    {% if page.lang == 'fr' %}
+
+    {% assign t = t | replace: '“', '«&#160;'
+                    | replace: '”', '&#160;»'
+                    | replace: ' :', '&#160;:'
+                    | replace: ' %', '&#160;%'
+                    | replace: ' ;', '<span style="white-space:nowrap">&thinsp;</span>;'
+                    | replace: ' !', '<span style="white-space:nowrap">&thinsp;</span>!'
+                    | replace @: ' ?', '<span style="white-space:nowrap">&thinsp;</span>?' %}
+
+    {% endif %}
+
+    {% if part.size == 2 %}
+
+      {% capture output %}{{ output }}<pre{{ c }}</pre>{% endcapture %}
+
+    {% endif %}
+
+    {% capture output %}{{ output }}{{ t }}{% endcapture %}
+
+  {% endfor %}
+{% endcapture %}{{ output }}<hr/>
+
 </div>
 
 <div class="foot">

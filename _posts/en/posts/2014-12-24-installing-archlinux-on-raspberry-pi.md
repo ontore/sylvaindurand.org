@@ -41,13 +41,11 @@ diskutil list
 
 We now write the image to the card. Warning, the entire contents of the SD card will be lost! For this, we enter the following commands (where `/dev/disk2`[[on OS X, we use `rdisk2` instead of `disk2` in order to make the copy faster]] is the path to the SD card):
 
-
 ```bash
 diskutil unmountDisk /dev/disk2
 sudo dd if=ArchLinuxARM-2014.06-rpi.img of=/dev/rdisk2 bs=1m
 sudo diskutil eject /dev/disk2
 ```
-
 
 We can then eject the SD card and insert it into your Raspberry Pi. Connect it to our network, and then put it on.
 
@@ -61,7 +59,6 @@ Two options are available:
 * you want to access it from your local network, and in this case it suffices to know what IP your router assigns;
 * you want to be able to access it anywhere[[for instance, this will be the case for a web server]], and in this case your router must redirect external requests to your Raspberry Pi.
 
-
 ### From the local network
 After connecting to your router and then turned our Raspberry Pi, we need to know its IP address[[under OS X, use `arp -a`]].
 
@@ -74,7 +71,6 @@ ssh root@192.168.1.1
 ```
 
 Then validate the security certificate, and enter the default password `root`. Here we are connected to our Raspberry Pi!
-
 
 ### From anywhere
 In many cases, we want our Raspberry Pi accessible from outside our network. Your router must have a fixed IP; otherwise, it is necessary to use a dynamic DNS client.
@@ -121,7 +117,6 @@ To update the entire[[this command will update your software as well as the driv
 pacman -Suy
 ```
 
-
 ### Language
 
 By default, the system is configured in English. In order to obtain an interface in another language, modify the following file:
@@ -167,7 +162,6 @@ It is also possible to rename the machine name that appears in the terminal. For
 hostname raspberry
 ```
 
-
 ### Improving safety
 Our Raspberry Pi being connected to a network, it will be subject to many attacks. To minimize the risk, it is first possible to change the default port for SSH (22) at any port. To do this, edit the following file:
 
@@ -199,5 +193,4 @@ You now have a fully functional machine accessible from your network or from the
 - NAS;
 - *Airplay* terminal;
 - Retro games console...
-
 

@@ -41,16 +41,13 @@ diskutil list
 
 Nous allons maintenant écrire l'image sur la carte. Attention, l'intégralité du contenu de la carte SD sera perdu ! Pour cela, nous entrons les commandes suivantes (où `/dev/disk2`[[sous OS X, on utilise `rdisk2` à la place de `disk2` lors de la commande `dd` pour nettement accélérer la copie]] est le chemin vers la carte SD) :
 
-
 ```bash
 diskutil unmountDisk /dev/disk2
 sudo dd if=ArchLinuxARM-2014.06-rpi.img of=/dev/rdisk2 bs=1m
 sudo diskutil eject /dev/disk2
 ```
 
-
 Nous pouvons alors éjecter la carte SD et l'insérer dans votre Raspberry Pi. Connectons celui-ci à notre réseau, et mettons-le sous tension.
-
 
 ## Connexion au Raspberry Pi
 Nous allons accéder à notre Raspberry Pi depuis notre ordinateur, en ligne de commande à l'aide de SSH. Les utilisateurs d'OS X ou de Linux pourront directement lancer la commande `ssh` présentée ci-dessous, tandis que ceux de Windows préfèreront utiliser un logiciel comme [*PuTTY*](http://www.putty.org/). Dans le cas contraire, il est possible de connecter un clavier en USB et de connecter le Raspberry Pi à un écran à l'aide de son port HDMI.
@@ -61,7 +58,6 @@ Deux possibilités s'offrent à vous :
 
 * soit vous ne souhaitez y accéder que depuis votre réseau local, et dans ce cas il suffit de connaître quelle IP lui attribue votre routeur ;
 * soit vous voulez pouvoir y accéder n'importe où[[ce sera par exemple le cas pour en faire un serveur web]], et dans ce cas votre routeur doit rediriger les demandes de l'extérieur vers votre Raspberry Pi.
-
 
 ### Depuis le réseau local
 Après avoir branché à votre routeur puis allumé notre Raspberry Pi, il nous faut connaître son adresse IP[[sous OS X, on exécute depuis son réseau local la commande `arp -a`]].
@@ -75,7 +71,6 @@ ssh root@192.168.1.1
 ```
 
 Validez alors le certificat de sécurité qui est présenté, puis entrez le mot de passe par défaut `root`. Nous voilà connecté à notre Raspberry Pi !
-
 
 ### Depuis n'importe où
 Dans beaucoup de cas, nous souhaitons que notre Raspberry Pi soit accessible depuis l'extérieur de notre réseau. Votre routeur doit posséder une IP fixe ; dans le cas contraire, il est nécessaire d'utiliser un client de DNS dynamique.
@@ -122,7 +117,6 @@ Pour mettre à jour l'intégralité[[cette commande mettra à jour aussi bien vo
 pacman -Suy
 ```
 
-
 ### Langue
 
 Par défaut, le système est configuré en anglais. Afin d'obtenir une interface dans une autre langue, modifions le fichier suivant :
@@ -167,7 +161,6 @@ Il est également possible de renommer le nom de la machine qui s'affiche dans l
 ```bash
 hostname raspberry
 ```
-
 
 ### Améliorer la sécurité
 Notre Raspberry Pi étant branché à un réseau, il sera soumis à de nombreuses attaques. Pour limiter les risques, il est tout d'abord possible de changer le port par défaut de SSH (22) en un port quelconque. Pour cela, modifiez le fichier suivant :

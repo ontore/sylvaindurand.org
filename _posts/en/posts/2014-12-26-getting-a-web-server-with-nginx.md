@@ -62,7 +62,6 @@ Its configuration has been modified, we restart *Nginx* to take into account the
 systemctl restart nginx
 ```
 
-
 ## Dynamic website
 
 Static websites, [that's goof]({{site.base}}/static-website-with-jekyll/), but being able to create dynamic sites is often helpful. This allows, for example, with a Raspberry Pi, to host web applications at home as an RSS reader or cloud. Examples are presented below.
@@ -80,8 +79,6 @@ The we activate it:
 ```bash
 systemctl start php-fpm
 ```
-
-
 
 ### Creating a site with PHP
 
@@ -150,8 +147,6 @@ As before, we then tells PHP to use by adding at the end of file `/etc/php/php.i
 extension=mysql.so
 ```
 
-
-
 ## Examples
 
 ### Getting an RSS reader *Miniflux*
@@ -182,7 +177,6 @@ Then enter therein:
 ```bash
 0 */1 * * *  cd /srv/http/miniflux && php cronjob.php >/dev/null 2>&1
 ```
-
 
 ### Getting a personnal cloud with *OwnCloud*
 

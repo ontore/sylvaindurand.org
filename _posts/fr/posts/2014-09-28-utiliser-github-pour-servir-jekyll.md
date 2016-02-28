@@ -12,7 +12,6 @@ Nous avons vu dans des articles précédents comment [créer un site statique av
 * rédiger directement ses articles en ligne grâce à [*Prose*](http://prose.io/) ;
 * tester la compilation, le HTML et les liens avec [*Travis*](https://travis-ci.org/).
 
-
 ## Stocker son site sur *GitHub*
 
 ### Création du compte
@@ -73,7 +72,6 @@ Notre site n'étant composé que de simples fichiers texte, vous pouvez utiliser
 
 Nous allons désormais voir comment faire en sorte que *GitHub* génère le site, puis l'héberge sur ses serveurs. Il suffira par la suite d'utiliser `git push` pour que *GitHub* compile et serve la dernière version de votre site.
 
-
 ### Avoir le même environnement en local
 À chaque fois que vous utiliserez `git push`, votre site sera automatiquement mis à jour.
 
@@ -125,7 +123,6 @@ Directement depuis le site *[Prose.io](http://prose.io/)*, connectez-vous avec v
 
 Une fois les modifications acceptées, il vous est possible d'effectuer un `commit`, suite à quoi *GitHub* va générer le site.
 
-
 ### Utiliser *Travis* pour vérifier la compilation du site
 
 Le service *[Travis](https://travis-ci.org/)* permet de compiler lui-même votre site à chaque *push*, afin de vous assurer qu'il n'y a pas d'erreur. Il est également possible d'ajouter d'autres tests, notamment `htmlproofer` pour vérifier la conformité de votre code HTML et s'il existe des liens morts. En cas de problème, vous serez prévenus par email.
@@ -149,5 +146,4 @@ script:
 ```
 
 Désormais, à chaque *push*, *Travis* vous avertira par email si *Jekyll* ne parvient pas à compiler votre site, si le code HTML produit n'est pas valide ou s'il existe un lien mort.
-
 

@@ -36,14 +36,13 @@ The command `jekyll new mysite` will create the source code of a working website
 
 With a single command, it is possible to generate the website and create a local host in order to watch the produced website: use `jekyll serve` in order to get your website available on `http://localhost:4000`. You can also automatically regenerate the website each time you change something in the source code[[however, this option doesn't detect the changes provided in `_config.yml`]] with `jekyll serve -w`, which will be by far the most useful command when you'll start to play with *Jekyll*.
 
-
 ### Tree structure
 
 *Jekyll* uses several folders:
 
 - *`_posts/`* in which the articles are stored[[you can freely organize your files in `_post`]], with names such as `yyyy-mm-dd-post-name.md`;
 - *`_layouts/`* which contains the layout of the website, that is to say everythin that will surround the articles;
--  *`_includes/`*, which contains small page fragments that you wish to include in multiple places on your site[[when you put a file in `_includes`, it is possible to include it anywhere with the tag `{%raw%}{{include filename}}{%endraw%}`. Il is also possible to provide it [parameters](http://jekyllrb.com/docs/templates/#includes)]].
+-  *`_includes/`*, which contains small page fragments that you wish to include in multiple places on your site[[when you put a file in `_includes`, it is possible to include it anywhere with the tag {%raw%}`{{include filename}}`{%endraw%}. Il is also possible to provide it [parameters](http://jekyllrb.com/docs/templates/#includes)]].
 
 The tree structure may then looks like:
 
@@ -103,34 +102,34 @@ By default, *Jekyll* use [*Markdown*](http://daringfireball.net/projects/markdow
 
 From its second version, *Jekyll* uses *Kramdown* which add many features like the possibility of giving CSS classes to elements, footnotes, definition lists, tables...
 
-
 ### Using metadata
 
-Any metadata "`variable`", declared in the frontmatter or as a default, can be called anywhere in the website, with the tag `{%raw%}{{page.variable}}{%endraw%}`, which returns its value.
+Any metadata "`variable`", declared in the frontmatter or as a default, can be called anywhere in the website, with the tag {%raw%}`{{page.variable}}`{%endraw%}, which returns its value.
 
 It is also possible to do some tests:
 
-```r{% raw %}
+{% raw %}
+```r
 {% if page.variable == 'value' %}
     banana
 {% else %}
     coconut
 {% endif %}
-{%endraw%}
 ```
+{%endraw%}
 
 We can also, for example, make loops on each article satisfying some conditions:
 
-```r{% raw %}
+{% raw %}
+```r
 {% assign posts=site.posts | where: "variable", "value" %}
 {% for post in posts %}
     {{ post.lang }}
 {% endfor %}
-{% endraw %}
 ```
+{% endraw %}
 
 Although the [syntax](https://github.com/Shopify/liquid/wiki/Liquid-for-Designers) may not be very elegant to use, the large number of [available variables](http://jekyllrb.com/docs/variables/), plus the custom metadata, combined with the [filters et commands](https://github.com/Shopify/liquid/wiki/Liquid-for-Designers), may become highly effective.
-
 
 ---
 

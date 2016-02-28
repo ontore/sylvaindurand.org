@@ -9,7 +9,7 @@ But I forgot OS X is a Unix system, and unlike Windows, it's perfectly possible 
 
 We will see how to install *Nginx*, PHP-FPM and *MariaDB* (MySQL) on OS X *El Capitan* thanks to *Homebrew* package manager.
 
-## *Homebrew* 
+## *Homebrew*
 
 *HomeBrew* is a package manager for OS X, that allows to easily install various Unix applications.
 

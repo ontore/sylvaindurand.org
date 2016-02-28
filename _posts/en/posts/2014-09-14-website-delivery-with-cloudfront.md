@@ -15,8 +15,6 @@ To this purpose, we will use:
 * [*Route 53*](http://aws.amazon.com/route53/) in order to use our domain name.
 * [*Awstats*](http://awstats.sourceforge.net/) in order to analyse the logs.
 
-
-
 ## Hosting on *S3*
 After having created an [*AWS*](http://aws.amazon.com/) account, go to the [management console](https://console.aws.amazon.com/), then to [*S3*](https://console.aws.amazon.com/s3/): this service will store the website files.
 
@@ -31,8 +29,6 @@ In `domain.tld` properties, choose `Static Website Hosting` in order to select `
 
 From `Endpoint` location, we can now see the files hosted in `www.domain.tld` bucket. We can upload those files from the *AWS* console, but we will explain on the last part how to upload it with one bash command line.
 
-
-
 ## Serving data with *Cloudfront*
 
 *S3* hosts our data in one unique location. Data stored in Dublin will be provided quite fast to a visitor located in Paris (about 200 ms in order to load the home page of this website) but less in New-York (500 ms) or Shanghai (1,300 ms).
@@ -40,8 +36,6 @@ From `Endpoint` location, we can now see the files hosted in `www.domain.tld` bu
 *Amazon CloudFront* is a [CDN](http://fr.wikipedia.org/wiki/Content_delivery_network), serving content to end-users with high availability and high performance. The access time falls below 100 ms in Paris, New-York and Shanghai.
 
 In return, a propagation delay exists between an upload and its update on *Cloudfront*. We will see in the last part how to notify any modification.
-
-
 
 ### Creating the distribution
 
@@ -52,7 +46,6 @@ In `Origin Domain Name`, we provide the address previously copied, similar to `w
 Leave the other field as default, except `Alternate Domain Names` where we provide our domain name: `www.domain.tld`. Indicate the homepage in `Default Root Object`: `index.html`.
 
 Our distribution is now created: we can now activate it with `Enable`. `InProgress`  status means *Cloudfront* is currently propagating our data; when it's over, the status will become `Deployed`.
-
 
 ## Domain name with *Route 53*
 
@@ -70,13 +63,7 @@ Back to *Route 53*, in `domain.tld`, create 3 records set with `Create Record Se
 
 Of course, it is possible to redirect sub-domains to other services (with NS, A and CNAME records) and to use mails (MX records).
 
-
 Now, an user going to `domain.tld` or `www.domain.tld` will target the same name buckets (thanks to *Route 53*) which redirect to `www.domain.tld` (thanks to *S3*). This address directly leads (thanks to *Route 53*) to the *Cloudfront* distribution, which provides our files stored in the  bucket `www.domain.tld`. Now, we just have to send our website to *Amazon S3*.
-
-
-
-
-
 
 ## Deploying *Jekyll* to the cloud
 
@@ -102,8 +89,6 @@ sudo brew install jpegoptim
 sudo brew install optipng
 ```
 
-
-
 ### Building Jekyll and compressing files
 
 We first build *Jekyll* into the `_site` folder:
@@ -119,15 +104,12 @@ find _site -name '*.jpg' -exec jpegoptim --strip-all -m80 {} \;
 find _site -name '*.png' -exec optipng -o5 {} \;
 ```
 
-
 Then, in order to improve performances, we compress HTML, CSS and JS files with Gzip, that is to say all files out of `static/` folder:
 
 ```bat
 find _site -path _site/static -prune -o -type f \
 -exec gzip -n "{}" \; -exec mv "{}.gz" "{}" \;
 ```
-
-
 
 ### Uploading files to *Amazon S3*
 
@@ -166,9 +148,6 @@ s3cmd --delete-removed --cf-invalidate-default-index \
       sync _site/ s3://www.domain.tld/
 ```
 
-
-
-
 ### Deploy in one single command
 
 We put those command in one single file, named `_deploy.sh`, located in *Jekyll* folder:
@@ -204,7 +183,6 @@ s3cmd --delete-removed --cf-invalidate-default-index \
 ```
 
 You only have to execute `sh _deploy.sh` to update the website. A few minutes may be required in order to update *CloudFront* data.
-
 
 ## Stats
 
@@ -263,7 +241,6 @@ Once this configuration is done, it is possible to generate statistics as a stat
 ```
 
 The statistics are now readable from the `awstats.www.domain.tld.html` file. It is then possible to publish it, send it to a server or email for example.
-
 
 ### Regular updating
 

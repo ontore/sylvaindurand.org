@@ -14,10 +14,7 @@ library('plotrix')    # Créer des échelles de couleurs
 library('classInt')   # Affecter ces couleurs aux données
 ```
 
-
 Les graphiques seront générés à l'aide des fonctions graphiques de base de *R*. `ggplot2` est également populaire, mais celui-ci semble moins pertinent pour des cartes : code plus long et moins lisible, incapacité à tracer des trous dans des polygones et `fortify` comme le traçage peuvent prendre un temps très long : pour tracer les 36 000 communes françaises, `fortify` et `ggplot` prennent chacun plusieurs dizaines de minutes, contre à peine 20 secondes pour `plot`.
-
-
 
 ## Cartes française vierge
 
@@ -36,7 +33,6 @@ frontieres <- readOGR(dsn="shp/geofla",  layer="LIMITE_DEPARTEMENT")
 frontieres <- frontieres[frontieres$NATURE %in% c('Fronti\xe8re internationale','Limite c\xf4ti\xe8re'),]
 ```
 
-
 Pour afficher les pays environnants en fond de carte, nous utilisons les données fournies par [Natural Earth](http://www.naturalearthdata.com/downloads/110m-cultural-vectors/110m-admin-0-countries/). On limite celles-ci à l'Europe :
 
 ```r
@@ -45,13 +41,11 @@ europe <- readOGR(dsn="shp/ne/cultural", layer="ne_10m_admin_0_countries")
  <- europe[europe$REGION_UN=="Europe",]
 ```
 
-
 ### Projection et traçage
 
 Notre carte utilisera la projection Lambert 93, [projection officielle](http://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000387816&fastPos=1&fastReqId=2039166907&categorieLien=cid&oldAction=rechTexte) pour la France métropolitaine. Celle-ci est déjà définie par défaut dans les fichiers `.prj` de Geofla. Pour l'Europe, on utilise `spTransform`.
 
 La carte peut alors être générée à l'aide de `plot` : on affiche en premier les frontières françaises, afin que le graphique soit centré sur la France. La couleur des bordures de chaque objet sont définies avec `border`, leur épaisseur avec `lwd` et le remplissage avec `col`.
-
 
 ```r
 
@@ -75,7 +69,6 @@ dev.off()
 
 ## Coloration d'une donnée : densité de population
 
-
 ### Lecture des données
 Le très grand nombre de communes en France offre un très beau maillage pour les représentations graphiques. Les données sont fournies par Geofla, qui fournit la population et la superficie de chaque commune. Nous allons essayer de représenter la densité de population.
 
@@ -87,10 +80,8 @@ communes     <- readOGR(dsn="shp/geofla", layer="COMMUNE")
 communes$DENSITE <- communes$POPULATION/communes$SUPERFICIE*100000
 ```
 
-
 ### Création de l'échelle de couleurs
 Il nous faut maintenant choisir une échelle de couleurs : nous allons ici affecter une nuance de bleu à chaque centile. `classIntervals` calcule les déciles, `smoothColors` crée nos dégradés de bleus, et `findColours` affecte ces bleus aux communes en fonction de leur densité. Créons par ailleurs une légende ne contenant que cinq couleurs. On utilise pour cela les mêmes fonctions.
-
 
 ```r
 # Échelle de couleurs
@@ -135,9 +126,6 @@ En réalité, nous serons plutôt amenés à tracer des données issues d'autres
 
 ### Lecture et correction des données
 On lit ce fichier, puis on fait correspondre les données grâce à l'identifiant des communes. Malheureusement, les données sont manquantes pour plus de 5<span style="white-space:nowrap">&thinsp;</span>000 communes, en raison du secret fiscal. "Trichons" pour améliorer le rendu général en affectant à ces communes le revenu médian du canton, fournit dans le même fichier et [remis en forme au format CSV]({{site.base}}/medias/carto/cantons.csv) :
-
-
-
 
 ```r
 # Lecture des données communales
@@ -191,8 +179,6 @@ dev.off()
 
 [![Revenu fiscal médian par unité de consommation par commune en 2010]({{site.base}}/medias/carto/revenus.jpg)]({{site.base}}/medias/carto/revenus.pdf)
 
-
-
 ## Traçage de données cartographiques : le réseau routier
 
 Nous pouvons également ajouter des données cartographiques à nos cartes : villes, zones urbaines, fleuves, forêts, relief... Nous allons ici tracer le réseau routier, grâce à [Route 500](http://professionnels.ign.fr/route500) publié par l'IGN :
@@ -222,9 +208,6 @@ dev.off()
 ```
 
 [![Réseau routier français en 2013]({{site.base}}/medias/carto/routes.jpg)]({{site.base}}/medias/carto/routes.pdf)
-
-
-
 
 ## Carte du monde vierge
 
@@ -262,7 +245,6 @@ dev.off()                          # Enregistrement du fichier
 
 [![Carte du monde projetée en Winkel Tripel]({{site.base}}/medias/carto/monde.jpg)]({{site.base}}/medias/carto/monde.pdf)
 
-
 ## Coloration d'une donnée : l'indice de développement humain
 
 L'utilisation la plus fréquente de ce type de carte consiste à colorer chaque pays selon une donnée. Traçons par exemple l'IDH, que le Programme de développement des nations unies propose au [format CSV]({{site.base}}/medias/carto/hdi.csv). La démarche est identique à celle utilisée pour tracer le revenu en France :
@@ -299,7 +281,6 @@ legend(-15000000,-3000000,fill=attr(leg, "palette"),
     title = "IDH en 2012 :")
 dev.off()
 ```
-
 
 [![L'indice de développement humain (IDH) dans le monde]({{site.base}}/medias/carto/idh.jpg)]({{site.base}}/medias/carto/idh.pdf)
 
@@ -340,7 +321,6 @@ dev.off()
 ```
 
 [![Carte du monde présentant la population des principales villes]({{site.base}}/medias/carto/villes.jpg)]({{site.base}}/medias/carto/villes.pdf)
-
 
 ## Représentation de données cartographiques : aires urbaines
 

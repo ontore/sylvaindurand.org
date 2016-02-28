@@ -72,9 +72,6 @@ permalink: /:title/
 
 Nous pouvons également spécifier individuellement une adresse pour chaque fichier en indiquant la variable `permalink` dans son entête[[c'est par exemple le cas pour la page d'accueil, que l'on place à la racine en indiquant `permalink: /` dans l'entête]].
 
-
-
-
 ### Attribution d'un identifiant pour chaque article
 
 Jusqu'ici, rien ne relie les différentes versions d'une même page. Pour ce faire, nous pourrions utiliser :
@@ -91,16 +88,14 @@ name: hello
 ---
 ```
 
-
-
 ## Liens entre les deux traductions
 
 ### Liste des articles par langue
 
 Les pages affichant la liste des articles ne doivent afficher que ceux qui sont dans la bonne langue, ce qui peut être atteint facilement grâce à la métadonnée `lang`. Le code suivant permet d'afficher l'ensemble des articles de la bonne langue :
 
-```html
 {% raw %}
+```html
 {% assign posts=site.posts | where:"lang", page.lang %}
 <ul>
 {% for post in posts %}
@@ -109,18 +104,17 @@ Les pages affichant la liste des articles ne doivent afficher que ceux qui sont 
     </li>
 {% endfor %}
 </ul>
-{% endraw %}
 ```
+{% endraw %}
 
 Pour ne pas afficher certaines pages, comme par exemple celles qui listent les articles, il suffit d'indiquer "`type: pages`" dans leurs métadonnées et de rajouter dans `assign` la condition "`| where:"type", "posts"`".
-
 
 ### Sélecteur de langue
 
 Pour créer un sélecteur de langue, comme celui présent en haut à droite de cette page, la démarche est très similaire à celle présentée au paragraphe précédent. On affiche la langue de toutes les versions existantes, y compris l'article en cours, en triant par dossier pour toujours avoir le même ordre :
 
-```html
 {% raw %}
+```html
 {% assign posts=site.posts | where:"name", page.name | sort: 'path' %}
 <ul>
 {% for post in posts %}
@@ -129,8 +123,8 @@ Pour créer un sélecteur de langue, comme celui présent en haut à droite de c
     </li>
 {% endfor %}
 </ul>
-{% endraw %}
 ```
+{% endraw %}
 
 Pour emphaser la langue de la version affichée, il suffit d'utiliser CSS[[pour cela, il faut bien déclarer l'attribut `lang` de la balise `html` en indiquant `<html lang="{{ page.lang }}">` dans le *layout*]]. Par exemple, pour la mettre en gras :
 
@@ -145,7 +139,7 @@ Pour emphaser la langue de la version affichée, il suffit d'utiliser CSS[[pour 
 ### Traduction des éléments du site
 En dehors du contenu des articles, il est également nécessaire de traduire les différents éléments qui composent le site : textes des menus, du haut et de bas de page, certains titres...
 
-Pour cela, on peut indiquer des traductions dans `_config.yml`[[depuis la deuxième version de *Jekyll*, il est également possible de placer ces informations dans le dossier [_data](http://jekyllrb.com/docs/datafiles/)]]. Ainsi, dans l'exemple suivant, `{% raw %}{{site.t[page.lang].home}}{% endraw %}` génèrera `Home`, `Accueil` ou `首页` selon la langue de la page :
+Pour cela, on peut indiquer des traductions dans `_config.yml`[[depuis la deuxième version de *Jekyll*, il est également possible de placer ces informations dans le dossier [_data](http://jekyllrb.com/docs/datafiles/)]]. Ainsi, dans l'exemple suivant, {% raw %}`{{site.t[page.lang].home}}`{% endraw %} génèrera `Home`, `Accueil` ou `首页` selon la langue de la page :
 
 ```python
 t:
@@ -186,16 +180,15 @@ t:
 
 Le menu peut alors être généré à l'aide d'une boucle :
 
-```html
 {% raw %}
+```html
 <ul>
   {% for menu in site.t[page.lang] %}
     <li><a href="{{menu[1].url}}">{{menu[1].title}}</a></li>
   {% endfor %}
 </ul>
-{% endraw %}
 ```
-
+{% endraw %}
 
 ### Traduction des dates
 À ce stade, tout peut être traduit sur le site à l'exception des dates,  générées automatiquement par *Jekyll*. Les formats courts, composés uniquement de chiffres, peuvent être adaptés sans difficulté. Selon la langue de la page, nous cherchons à obtenir :
@@ -206,8 +199,8 @@ Le menu peut alors être généré à l'aide d'une boucle :
 
 Pour cela, il suffit d'utiliser le code suivant, qu'il est possible ensuite de placer dans le dossier `_includes` afin de l'utiliser à plusieurs reprises :
 
-```python
 {% raw %}
+```python
 {% if page.lang == 'en' %}
     {{ page.date | date: "%d/%m/%Y" }}
 {% endif %}
@@ -219,9 +212,8 @@ Pour cela, il suffit d'utiliser le code suivant, qu'il est possible ensuite de p
 {% if page.lang == 'zh' %}
     {{ page.date | date: "%Y年%-m月%-d号" }}
 {% endif %}
-{% endraw %}
 ```
-
+{% endraw %}
 
 Pour les dates longues, il est possible d'utiliser astucieusement les filtres de date et les remplacements pour obtenir n'importe quel format. Par exemple, si nous cherchons à obtenir :
 
@@ -230,8 +222,8 @@ Pour les dates longues, il est possible d'utiliser astucieusement les filtres de
 
 Nous utilisons alors le code suivant :
 
-```python
 {% raw %}
+```python
 {% assign d = page.date | date: "%-d" %}
 {% assign m = page.date | date: "%-m" %}
 
@@ -263,8 +255,8 @@ of {{ page.date | date: "%B %Y"}}
 {% endcase %}
 {{ page.date | date: "%Y"}}
 {% endif %}
-{% endraw %}
 ```
+{% endraw %}
 
 Il est à nouveau possible de placer ce code dans un fichier `date.html` placé dans le dossier `_includes` pour pouvoir l'appeler simplement.
 
@@ -278,16 +270,16 @@ Pour ce faire, deux solutions sont possibles : [intégrer une balise `<link>`](h
 
 Il suffit d'indiquer dans la partie `<head>` chaque page, l'ensemble des traductions de la page en cours[[il convient cependant de faire attention d'utiliser les bons [identifiants de langue](https://support.google.com/webmasters/answer/189077?hl=fr) pour qu'ils soient reconnus]]. Nous pouvons pour cela d'utiliser le code suivant, semblable à ceux présentés précédemment :
 
-```html
 {% raw %}
+```html
 {% assign posts=site.posts | where:"name", page.name %}
 {% for post in posts %}
   {% if post.lang != page.lang %}
     <link rel="alternate" hreflang="{{post.lang}}" href="{{post.url}}" />
   {% endif %}
 {% endfor %}
-{% endraw %}
 ```
+{% endraw %}
 
 ### Avec un fichier *sitemaps*
 
@@ -297,8 +289,8 @@ Pour cela, il suffit d'indiquer l'intégralité des pages du site (quelle que so
 
 Ce fichier peut être généré automatiquement par *Jekyll* en créant un fichier `sitemaps.xml` à la racine du site contenant :
 
-```xml
 {% raw %}
+```xml
 ---
 layout:
 permalink: /sitemaps.xml
@@ -317,6 +309,5 @@ permalink: /sitemaps.xml
   </url>
   {% endfor %}
 </urlset>
-{% endraw %}
 ```
-
+{% endraw %}

@@ -16,7 +16,6 @@ Depuis sa version 2.0, *Jekyll* utilise par défaut le moteur *Kramdown* et l'ex
 * de convertir les tirets longs  `---` en --- ;
 * de détecter les acronymes et de leur appliquer une classe.
 
-
 ## Appliquer des filtres sur le contenu
 
 ### Modifier le texte, pas le code
@@ -59,7 +58,6 @@ Par exemple, pour remplacer tous les *a* en *b* dans les textes, mais pas dans l
 ```
 {% endraw %}
 
-
 ## Typographie française
 
 Nous allons montrer ici comment faire en sorte que *Jekyll* génère automatiquement des guillemets français et des espaces insécables de la bonne longueur devant les divers signes de ponctuation.
@@ -74,7 +72,6 @@ Pour obtenir des guillemets français `«` et `»`, remplaçons simplement les g
                 | replace: '”', '&#160;»' %}
 ```
 {% endraw %}
-
 
 ### Utiliser les bonnes espaces devant la ponctuation
 
@@ -98,7 +95,6 @@ On utilise alors le code suivant pour obtenir le résultat désiré :
                 | replace @: ' ?', '<span style="white-space:nowrap">&thinsp;</span>?' %}
 ```
 {% endraw %}
-
 
 ### Résultat final
 

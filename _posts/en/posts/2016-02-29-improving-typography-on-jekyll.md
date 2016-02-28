@@ -16,7 +16,6 @@ Since version 2.0, *Jekyll* use by default *Kramdown* engine and Typogruby exten
 * convert long dashes  `---` in --- ;
 * detect acronyms and apply them a class.
 
-
 ## Apply filters to the content
 
 ### Modify paragraphs, leave the code
@@ -59,7 +58,6 @@ For example, if you want to replace all *a*'s in *b*'s in the texts, but not in 
 ```
 {% endraw %}
 
-
 ## French typography
 
 We will show here how to make *Jekyll* automatically generates quotes French and non-breaking spaces to the right length before the various punctuation marks.
@@ -74,7 +72,6 @@ For quotes French `«` and `»`, we simply replace English quotation marks, as s
                 | replace: '”', '&#160;»' %}
 ```
 {% endraw %}
-
 
 ### Using the right spaces before punctuation
 
@@ -98,7 +95,6 @@ We then use the following code to get the desired result:
                 | replace @: ' ?', '<span style="white-space:nowrap">&thinsp;</span>?' %}
 ```
 {% endraw %}
-
 
 ### Final result
 

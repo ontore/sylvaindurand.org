@@ -12,7 +12,6 @@ In the previous articles, we saw how to [create a static website with *Jekyll*](
 * write articles directly on line thanks to [*Prose*](http://prose.io/) ;
 * test compilations, HTML validity and links with [*Travis*](https://travis-ci.org/).
 
-
 ## Hosting our website on *GitHub*
 
 ### Account creation
@@ -72,7 +71,6 @@ Because the website only use simple text files, you can use *git* as you would d
 ## Serving *Jekyll* on *GitHub Pages*
 
 We will now see how to use *GitHub* to generate, then host and serve the website. You will just have to use `git push` in order to make *GitHub* generating and serving the last version of your website.
-
 
 ### Being able to reproduce *GitHub* settings
 Each time you will use `git push`, your website will be automatically generated on *GitHub*.
@@ -150,5 +148,4 @@ script:
 ```
 
 Now, each time you push something, *Travis* will send you an email if *Jekyll* can't generate your website, if the HTML code is not valid or if a link rot remains.
-
 

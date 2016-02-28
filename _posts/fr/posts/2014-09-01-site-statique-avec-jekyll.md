@@ -36,14 +36,13 @@ La commande `jekyll new monsite` permet d'obtenir le code source d'un site fonct
 
 En une seule commande, il est possible de générer le site et de créer un serveur local pour visualiser le site produit : utilisez `jekyll serve` pour pouvoir l'observer à l'adresse `http://localhost:4000`. Il est également possible de regénérer le site à chaque modification du code source[[cette option ne prend cependant pas pas en compte les modifications de `_config.yml`]] avec `jekyll serve -w`, qui sera de loin la commande la plus utile lorsque vous utiliserez régulièrement *Jekyll*.
 
-
 ### Arborescence
 
 Le code source d'un site *Jekyll* s'organise selon plusieurs dossiers :
 
 - *`_posts/`* dans lequel seront placés[[l'arborence interne du dossier `_post` est laissée entièrement libre]] tous les articles de votre site, au format `aaaa-mm-jj-nom-du-post.md` ;
 - *`_layouts/`* qui va contenir la maquette du site, c'est-à-dire tout ce qui entourera nos articles ;
--  *`_includes/`*, qui contiendra des codes que vous pouvez inclure[[en plaçant un fichier dans `_includes`, il vous sera possible de l'importer n'importe où avec `{%raw%}{{include nom-du-fichier}}{%endraw%}` ; il est même possible de lui passer des [paramètres](http://jekyllrb.com/docs/templates/#includes)]] dans différentes pages si vous en avez besoin régulièrement.
+-  *`_includes/`*, qui contiendra des codes que vous pouvez inclure[[en plaçant un fichier dans `_includes`, il vous sera possible de l'importer n'importe où avec {%raw%}`{{include nom-du-fichier}}`{%endraw%} ; il est même possible de lui passer des [paramètres](http://jekyllrb.com/docs/templates/#includes)]] dans différentes pages si vous en avez besoin régulièrement.
 
 Le répertoire de votre site pourra alors ressembler à :
 
@@ -103,34 +102,34 @@ Par défaut, les articles s'écrivent en [*Markdown*](http://daringfireball.net/
 
 Depuis sa deuxième version, *Jekyll* utilise *Kramdown* qui ajoute de nombreuses fonctionnalités telles que la possibilité d'attribuer des classes aux éléments, les notes de bas de page, les listes de définition, les tableaux...
 
-
 ### Utilisation des métadonnées
 
-Toute métadonnée "`variable`" déclarée dans l'entête peut être appelée, dans n'importe quel fichier, à l'aide d'une balise `{%raw%}{{page.variable}}{%endraw%}` qui retournera alors sa valeur.
+Toute métadonnée "`variable`" déclarée dans l'entête peut être appelée, dans n'importe quel fichier, à l'aide d'une balise {%raw%}`{{page.variable}}`{%endraw%} qui retournera alors sa valeur.
 
 Il est également possible d'effectuer des tests :
 
-```r{% raw %}
+{% raw %}
+```r
 {% if page.variable == 'value' %}
     banane
 {% else %}
     noix de coco
 {% endif %}
-{%endraw%}
 ```
+{%endraw%}
 
 Nous pouvons aussi, par exemple, effectuer des boucles sur l'ensemble des articles répondant à certaines conditions :
 
-```r{% raw %}
+{% raw %}
+```r
 {% assign posts=site.posts | where: "variable", "value" %}
 {% for post in posts %}
     {{ post.lang }}
 {% endfor %}
-{% endraw %}
 ```
+{% endraw %}
 
 Bien que la [syntaxe](https://github.com/Shopify/liquid/wiki/Liquid-for-Designers) ne soit pas toujours très élégante à utiliser, le grande nombre de [variables disponibles](http://jekyllrb.com/docs/variables/), auxquelles s'ajoutent les métadonnées personnalisées que vous créerez ainsi que les nombreux [filtres et commandes](https://github.com/Shopify/liquid/wiki/Liquid-for-Designers), peuvent être extrêmement efficaces.
-
 
 ---
 

@@ -15,9 +15,6 @@ Nous utiliserons pour cela :
 * [*Route 53*](http://aws.amazon.com/fr/route53/) pour utiliser notre propre nom de domaine ;
 * [*Awstats*](http://awstats.sourceforge.net/) pour analyser les statistiques de notre site.
 
-
-
-
 ## Hébergement sur *S3*
 
 Après avoir créé un compte [*AWS*](http://aws.amazon.com/fr/), allons dans la [console](https://console.aws.amazon.com/) puis dans [*S3*](https://console.aws.amazon.com/s3/) : ce service nous permettra de stocker les fichiers du site internet.
@@ -32,7 +29,6 @@ Dans les propriétés de `www.domain.tld`, activons l'hébergement de fichiers (
 Dans les propriétés de `domain.tld`, on va également dans `Static Website Hosting` mais pour y sélectionner `Redirect all requests` : on indique `www.domain.tld`. Ce *buckets* restera vide.
 
 C'est tout ! Depuis l'adresse `Endpoint`, on peut observer tous les fichiers stockés dans le bucket `www.domain.tld`. Il est possible d'en transmettre depuis l'interface Web, nous verrons dans la dernière partie comment simplement envoyer son site sur *S3* depuis un terminal.
-
 
 ## Service par *Cloudfront*
 
@@ -51,8 +47,6 @@ Dans `Origin Domain Name`, nous indiquons l'adresse que vous avez précédemment
 Nous laissons tous les autres champs par défaut, à l'exception de `Alternate Domain Names` dans lequel nous indiquons le nom de domaine où s'affichera notre site : `www.domain.tld`. Précisons la page d'accueil dans `Default Root Object` : `index.html`.
 
 Notre distribution créée, nous pouvons l'activer avec `Enable`. Le statut `InProgress` signifie que *Cloudfront* est en train de répandre des copies de nos fichiers. `Deployed` signifie que le service est pleinement opérationnel. La liste affiche enfin le lien de la distribution, dans notre cas `http://d2whzwio4uka4g.cloudfront.net`. Si vous avez déjà envoyé un fichier sur *S3*, vous pouvez vérifier que tout fonctionne bien depuis cette adresse.
-
-
 
 ## Noms de domaines avec *Route 53*
 Notre site pourrait être pleinement opérationnel, mais à une adresse de type `http://d2whzwio4uka4g.cloudfront.net`. Le service *Route 53* va nous permettre de définir notre propre nom de domaine.
@@ -73,19 +67,13 @@ Revenu dans *Route 53*, dans `domain.tld`, nous allons créer trois enregistreme
 
 Il reste bien sûr possible de rediriger des sous-domaines vers d'autres services (avec les champs NS, A ou CNAME) ou d'utiliser un service de mails (avec les champs MX).
 
-
-
 Désormais, un utilisateur tapant `domain.tld` ou `www.domain.tld` atteindra les buckets de mêmes noms (grâce à *Route 53*), qui redirigent vers l'adresse `www.domain.tld` (grâce aux réglages des *buckets* dans *S3*). Ils y rejoignent ceux qui ont demandé dès le début `www.domain.tld`.
 
 Cette adresse `www.domain.tld` pointe directement (grâce à *Route 53*) vers la distribution *Cloudfront*, qui elle-même sert les fichiers présents dans le bucket `www.domain.tld`. Il ne reste maintenant qu'à envoyer notre site sur *Amazon S3*.
 
-
-
-
 ## Déployer *Jekyll* dans les nuages
 
 Nous allons maintenant créer un fichier `sh` qui va nous permettre, en une commande, de générer notre site et de mettre à jour sur *Amazon S3* tous les fichiers qui ont été modifiés depuis la version précédente, et d'indiquer à *Cloudfront* qu'il va falloir les mettre à jour.
-
 
 ### Prérequis : s3cmd
 
@@ -100,14 +88,12 @@ brew install gpg
 
 Nous devons maintenant donner l'autorisation à `s3cmd` d'intéragir avec notre compte. Depuis la rubrique [Security Credentials](https://console.aws.amazon.com/iam/home?#security_credential) de la console, allez dans `Access Key` et générez une clef d'accès et une clef secrète. Conservez-les précieusement. On lance alors l'assistant de configuration avec `s3cmd --configure`.
 
-
 Par ailleurs, afin d'optimiser les images, nous allons installer `jpegoptim` et `optipng` :
 
 ```bat
 brew install jpegoptim
 brew install optipng
 ```
-
 
 ### Génération de Jekyll et compression des fichiers
 
@@ -204,7 +190,6 @@ s3cmd --delete-removed --cf-invalidate-default-index \
 
 Il suffit alors d'exécuter la commande `sh _deploy.sh` pour mettre à jour notre site en une seule commande. Quelques minutes peuvent s'écouler avant que la mise à jour ne soit effective sur *Cloudfront*.
 
-
 ## Statistiques
 
 Bien que notre site soit statique et servi par un serveur de contenu, il est tout à fait possible d'analyser les logs si l'on ne souhaite pas utiliser de système basé sur un code javascript, tel [Piwik](http://piwik.org/) ou [Google Analytics](https://www.google.fr/intl/fr/analytics/). Ici, nous automatiserons la tâche (récupération des logs, traitement et affichage des statistiques) depuis un serveur (dans notre exemple, un Raspberry Pi sous Raspbian) et nous utiliserons [*Awstats*](http://awstats.sourceforge.net/).
@@ -263,7 +248,6 @@ Une fois cette configuration faite, il est possible de générer les statistique
 
 Les statistiques sont désormais lisibles depuis le fichier `awstats.www.domain.tld.html`. Il est ensuite possible de le publier, de l'envoyer sur un serveur ou par mail par exemple.
 
-
 ### Mise à jour régulière des statistiques
 
 Pour automatiser la génération de statistiques à intervalles réguliers, créons un fichier `stats.sh` avec `nano ~/awstats/stats.sh` qui récupère les logs et génère les statistiques :
@@ -279,7 +263,6 @@ s3cmd del --recursive --force s3://statistiques/
 ```
 
 Nous donnons à ce fichier les droits pour qu'il puisse être exécuté, puis créons une tâche `cron` :
-
 
 ```bat
 sudo chmod 711 ~/awstats/stats.sh

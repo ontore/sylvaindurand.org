@@ -5,8 +5,6 @@ lang: en
 
 If _R_ language has already become a reference in statistical analysis and data processing, it may be thanks to its hability to represent and visualize data. They can be used in order to visualize spatial data in the form of cartographic representations which, combined with its other features, makes it an excellent geographic information system. This article sets out to show, through the provision of relevant example, how _R_ can handle spatial data by creating maps.
 
-
-
 ### Prerequisite
 
 Once _R_ is installed on your computer, few libraries will be used: `rgdal` allows us to import and project shapefiles, `plotrix` creates color scales, and `classInt` assigns colors to map data. Once the libraries installed with `install.packages`, load them at the beginning of the session:
@@ -18,8 +16,6 @@ library('classInt')   # Assigning colors to data
 ```
 
 Graphics will be plot using _R_ base functions. `ggplot2` is an alternative, but it seems less relevant here: longer and less legible code, unability to plot holes inside polygones, `fortify` and ploting can last much longer.
-
-
 
 ## Blank France map
 
@@ -43,7 +39,6 @@ In order to show neighbouring countries, we will use data provided by [Natural E
 europe <- readOGR(dsn="shp/ne/cultural", layer="ne_10m_admin_0_countries")
  <- europe[europe$REGION_UN=="Europe",]
 ```
-
 
 ### Projection and plot
 
@@ -74,10 +69,8 @@ dev.off()
 
 ## Visualizing a data: population density
 
-
 ### Reading data
 The very large number of _communes_ (the smallest administrative level in France) gives us excellent spatial data. Geofla provides us their bounderies, population and area. So we will plot population density:
-
 
 ```r
 # Reading shapefile
@@ -87,11 +80,8 @@ communes     <- readOGR(dsn="shp/geofla", layer="COMMUNE")
 communes$DENSITY <- communes$POPULATION/communes$SUPERFICIE*100000
 ```
 
-
 ### Color scale
 In order to create a color scale, we will assign shades of blue to each percentile. `classIntervals` calculates percentiles, `smoothColors` create the blue scale, and `findColours` assigns blues depending on each commune depending on their population density. Then, we create a legend, with only five colors.
-
-
 
 ```r
 # Color scale
@@ -136,10 +126,7 @@ The main value is to plot data provided by external files. We will plot the medi
 
 ### Reading and supplementing data
 
-
 Unfortunately, data is missing for more than 5 000 communes, due to tax secrecy. We can "cheat" in order to improve the global render by assigning to those communes the canton (a larger administrative level) median income, given in the [same file](http://www.insee.fr/fr/themes/detail.asp?reg_id=99&ref_id=base-cc-rev-fisc-loc-menage), [converted in CSV]({{site.base}}/medias/carto/cantons.csv).
-
-
 
 ```r
 # Loading communes data
@@ -193,7 +180,6 @@ dev.off()
 
 [![Median taxable income per consumption unit in France in 2010]({{site.base}}/medias/carto/incomes.jpg)]({{site.base}}/medias/carto/incomes.pdf)
 
-
 ## Visualizing map data: the road network
 
 We can also add map data: cities, urban areas, rivers, forests... We will here plot the French road network, thanks to [Route 500](http://professionnels.ign.fr/route500):
@@ -222,8 +208,6 @@ dev.off()
 ```
 
 [![French roads network]({{site.base}}/medias/carto/routes.jpg)]({{site.base}}/medias/carto/routes.pdf)
-
-
 
 ## Blank world map
 
@@ -260,8 +244,6 @@ dev.off()                          # Saving file
 ```
 
 [![Carte du monde projetée en Winkel Tripel]({{site.base}}/medias/carto/monde.jpg)]({{site.base}}/medias/carto/monde.pdf)
-
-
 
 ## Visualizing data: Human Development Index
 
@@ -307,7 +289,6 @@ dev.off()
 ### Reading data
 An other kind of visualization is given by circles. Population of most populated cities is provided by [Natural Earth](http://www.naturalearthdata.com/downloads/110m-cultural-vectors/110m-populated-places/):
 
-
 ```r
 # Loading shapefile
 cities <- readOGR(dsn="shp/ne/cultural",layer="ne_110m_populated_places")
@@ -341,7 +322,6 @@ dev.off()
 ```
 
 [![Most populated cities in the world]({{site.base}}/medias/carto/villes.jpg)]({{site.base}}/medias/carto/villes.pdf)
-
 
 ## Visualizing map data: urban areas
 

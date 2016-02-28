@@ -62,7 +62,6 @@ Sa configuration ayant été modifiée, on relance *Nginx* pour prendre en compt
 systemctl restart nginx
 ```
 
-
 ## Site dynamique
 
 Les sites statiques, [c'est bien]({{site.base}}/site-statique-avec-jekyll/), mais pouvoir créer des sites dynamiques est souvent bien utile. Cela permet par exemple, depuis un *Raspberry Pi*, de pouvoir héberger chez soi des applications web comme un lecteur de flux RSS ou un *cloud*. Des exemples sont présentés ci-dessous.
@@ -80,8 +79,6 @@ On active alors celui-ci :
 ```bash
 systemctl start php-fpm
 ```
-
-
 
 ### Création d'un site avec PHP
 
@@ -151,8 +148,6 @@ Comme précédemment, on indique alors à PHP de l'utiliser en ajoutant, à la f
 extension=mysql.so
 ```
 
-
-
 ## Exemples
 
 ### Obtenir un lecteur de flux RSS avec *Miniflux*
@@ -184,7 +179,6 @@ On y inscrit alors :
 0 */1 * * *  cd /srv/http/miniflux && php cronjob.php >/dev/null 2>&1
 ```
 
-
 ### Obtenir un *cloud* personnel avec *OwnCloud*
 
 Synchroniser ses calendriers, contacts et différents fichiers entre différents périphériques -- ordinateurs, tablettes, téléphones -- est aujourd'hui très courant. Du fait du caractère très personnel, voire sensible, de ces données, il peut être intéressant d'installer un outil comme *OwnCloud* sur son Raspberry Pi.
@@ -211,7 +205,6 @@ On y inscrit alors :
 ```r
 */15  *  *  *  * php -f /srv/http/owncloud/cron.php
 ```
-
 
 Depuis notre réseau local, nous pouvons accéder à l'interface web d'OwnCloud en allant sur l'adresse de notre Raspberry Pi (l'IP externe ou le nom de domaine).
 

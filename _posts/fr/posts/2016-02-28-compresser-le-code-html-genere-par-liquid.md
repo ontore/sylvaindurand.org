@@ -25,7 +25,6 @@ Par exemple, le code suivant[[qui affiche les multiplications qui ont pour résu
 ```
 {% endraw %}
 
-
 Que se passe-t-il ? *Liquid* lit l'ensemble des caractères présents dans la boucle, y compris les espaces et les sauts de ligne, et les restitue sans se poser de questions. Cette double boucle génère donc des centaines de sauts de lignes et d'espaces inutiles.
 
 Cependant, pour avoir un code HTML plus lisible, nous préférerions comme résultat :
@@ -41,7 +40,6 @@ Cependant, pour avoir un code HTML plus lisible, nous préférerions comme résu
 </ul>
 ```
 
-
 ## Première piste : désindenter son code
 
 La première solution, qui est aussi la moins satisfaisante, est de supprimer les espaces et sauts de ligne que l'on ne souhaite pas voir affichés. Dans l'exemple précédent, nous obtiendrions alors :
@@ -55,7 +53,6 @@ La première solution, qui est aussi la moins satisfaisante, est de supprimer le
 {% endraw %}
 
 Le code source généré est impeccable, mais notre code *Liquid* est pratiquement illisible...
-
 
 ## Deuxième piste : utiliser `capture`
 

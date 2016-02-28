@@ -40,7 +40,6 @@ However, in order to get a readable HTML code, we would like to get:
 </ul>
 ```
 
-
 ## First try : unindent your code
 
 A first answer, which is also the less satisfying, would be to delete all spaces and linebreak which shoudn't be shown. In the previous example, it would give:
@@ -54,7 +53,6 @@ A first answer, which is also the less satisfying, would be to delete all spaces
 {% endraw %}
 
 The HTML output is perfect, but our *Liquid* code is unreadable...
-
 
 ## First try : using `capture`
 
@@ -82,7 +80,6 @@ The previous example would become:
 {% endraw %}
 
 The code remains still a little verbous, and isn't that clean yet.
-
 
 ## Using {% raw %} `%}{%`{% endraw %} , the final answer ?
 

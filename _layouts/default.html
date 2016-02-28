@@ -23,9 +23,9 @@
 
 <div class="nav">
   <ul>{% for menu in site.data.navigation[page.lang] %}
-      <li><a href="{{ menu[1].url }}">{{ menu[1].title }}</a></li>{% endfor %}
-      <li class="lang">{% assign posts=site.posts | where:"date", page.date | sort: 'path' %}{% for post in posts %}
-        <a href="{{ post.url }}" class="{{ post.lang }}">{{ post.lang }}</a>{% endfor %}
+    <li><a href="{{ menu[1].url }}">{{ menu[1].title }}</a></li>{% endfor %}
+    <li class="lang">{% assign posts=site.posts | where:"date", page.date | sort: 'path' %}{% for post in posts %}
+      <a href="{{ post.url }}" class="{{ post.lang }}">{{ post.lang }}</a>{% endfor %}
     </li>
   </ul>
 </div>
@@ -33,9 +33,9 @@
 <h1 style="background-image: url('/medias/headers/{{ page.date | date:'%Y-%m-%d' }}.jpg')">{{ page.title }}</h1>
 
 <div class="article">
-{% include date.html date=page.date %}
-{% if page.type != 'pages' %}<p class="date">{{ day }}{{ sup }} {{ month }} {{ year }}</p>{% endif %}
-
+{% include date.html date=page.date %}{% if page.type != 'pages' %}
+<p class="date">{{ day }}{{ sup }} {{ month }} {{ year }}</p>
+{% endif %}
 {% include typo.html %}
 <hr/>
 </div>

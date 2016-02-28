@@ -87,7 +87,7 @@ To use PHP with *Nginx* we will use PHP-FPM. To install PHP 5.6, launch the foll
 
 ```bash
 brew tap homebrew/php
-brew install php56 --with-fpm --without-apache 
+brew install php56 --with-fpm --without-apache
 ```
 
 Once installed, use the following commands to run PHP-FPM on startup:

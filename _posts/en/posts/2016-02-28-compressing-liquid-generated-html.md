@@ -81,20 +81,20 @@ The previous example would become:
 
 The code remains still a little verbous, and isn't that clean yet.
 
-## Using {% raw %} ` %}{% `{% endraw %} , the final answer ?
+## Using {% raw %} `%}{%`{% endraw %} , the final answer ?
 
 Since *Jekyll* 3.0.0, it is possible to put linebreaks *inside* *Liquid* tags, without any influence on the output code. So, it is possible to indent your code like:
 
 {% raw %}
 ```html
-<ul>{% 
-for i in (1..12) %}{% 
-  for j in (1..12) %}{% 
-    assign result = i | times: j %}{% 
+<ul>{%
+for i in (1..12) %}{%
+  for j in (1..12) %}{%
+    assign result = i | times: j %}{%
     if result == 12 %}
-    <li> {{ i }} ⨉ {{ j }} = 12 </li>{% 
-    endif %}{% 
-  endfor %}{% 
+    <li> {{ i }} ⨉ {{ j }} = 12 </li>{%
+    endif %}{%
+  endfor %}{%
 endfor %}
 </ul>
 ```

@@ -9,7 +9,7 @@ C'était oublier qu'OS X est un système Unix, et que contrairement à Windows, 
 
 Nous allons voir ici comment installer *Nginx*, PHP-FPM et *MariaDB* (MySQL) sous OS X *El Capitan* grâce au gestionnaire de paquets *Homebrew*.
 
-## *Homebrew* 
+## *Homebrew*
 
 *HomeBrew* est un gestionnaire de paquets pour OS X, qui permet d'installer facilement les différentes applications Unix.
 
@@ -19,7 +19,7 @@ Pour l'installer, il suffit de saisir dans un terminal :
 ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 ```
 
-Si vous ne les avez pas déjà, OS X vous proposera d'installer préalablement les outils en ligne de commande *Xcode*. 
+Si vous ne les avez pas déjà, OS X vous proposera d'installer préalablement les outils en ligne de commande *Xcode*.
 
 Après installation, la commande suivante permet, le cas échéant, de donner les indications permettant de parfaire l'installation :
 
@@ -87,7 +87,7 @@ Pour utiliser PHP avec *Nginx*, nous allons utiliser PHP-FPM. Pour installer PHP
 
 ```bash
 brew tap homebrew/php
-brew install php56 --with-fpm --without-apache 
+brew install php56 --with-fpm --without-apache
 ```
 
 Une fois installé, on utilise les commandes suivantes pour lancer PHP-FPM au démarrage :
@@ -163,7 +163,7 @@ sudo cp -v /usr/local/opt/mariadb/*.plist /Library/LaunchDaemons/
 sudo chown root:wheel /Library/LaunchDaemons/homebrew.mxcl.mariadb.plist
 ```
 
-Enfin, on finalise l'installation en choisissant un mot de passe `root` pour MySQL :  
+Enfin, on finalise l'installation en choisissant un mot de passe `root` pour MySQL :
 
 ```bash
 mysql_secure_installation

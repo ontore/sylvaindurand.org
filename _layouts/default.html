@@ -33,15 +33,15 @@
 <h1 style="background-image: url('/medias/headers/{{ page.date | date:'%Y-%m-%d' }}.jpg')">{{ page.title }}</h1>
 
 <div class="article">
-
-{% if page.type != 'pages' %}<p class="date">{% include date.html date=page.date %}</p>{% endif %}
+{% include date.html date=page.date %}
+{% if page.type != 'pages' %}<p class="date">{{ day }}{{ sup }} {{ month }} {{ year }}</p>{% endif %}
 
 {% include typo.html %}
 <hr/>
 </div>
 
 <div class="foot">
-  {{ site.data.translations[page.lang].created }} <span>{% include date.html date=page.date %}</span> {{ site.data.translations[page.lang].author }} <a href="http://sylvaindurand.org/">Sylvain Durand</a>.
+  {{ site.data.translations[page.lang].created }} <span>{{ day }}{{ sup }} {{ month }} {{ year }}</span> {{ site.data.translations[page.lang].author }} <a href="http://sylvaindurand.org/">Sylvain Durand</a>.
 </div>
 
 </body>

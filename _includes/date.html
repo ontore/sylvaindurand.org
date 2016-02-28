@@ -1,87 +1,68 @@
-{%
+{% capture hide %}
 
-    if include.mode != 'month' %}{%
+{% if include.mode != 'month' %}
 
-      assign d = include.date | date: "%-d" %}{%
+    {% assign day = include.date | date: "%-d" %}
 
-      if page.lang == 'fr'
+    {% if page.lang != 'fr' %}
 
-         %}{{ d }}{% if d == "1" %}<sup>er</sup>{% endif %} {%
+        {% case day %}
+            {% when '1' or '21' or '31' %}
+                {% capture sup %}<sup>st</sup> of{% endcapture %}
+            {% when '2' or '22' %}
+                {% capture sup %}<sup>nd</sup> of{% endcapture %}
+            {% when '3' or '23' %}
+                {% capture sup %}<sup>rd</sup> of{% endcapture %}
+            {% else %}
+                {% capture sup %}<sup>th</sup> of{% endcapture %}
+        {% endcase %}
 
-        else
+    {% else %}
 
-            %}{{ d }}<sup>{%
+        {% if day == "1" %}
+            {% capture sup %}<sup>er</sup>{% endcapture %}
+        {% endif %}
 
-                case d %}{%
+    {% endif %}
 
-                    when '1' or '21' or '31'
-                      %}st{%
+{% endif %}
 
-                    when '2' or '22'
-                      %}nd{%
+{% if page.lang != 'fr' %}
 
-                    when '3' or '23'
-                      %}rd{%
+    {% capture month %}{{ include.date | date: "%B" }}{% endcapture %}
 
-                   else
-                     %}th{%
+    {% else %}
 
-                endcase
+    {% assign m = include.date | date: "%-m" %}
+    {% case m %}
+        {% when '1' %}
+            {% capture month %}janvier{% endcapture %}
+        {% when '2' %}
+            {% capture month %}février{% endcapture %}
+        {% when '3' %}
+            {% capture month %}mars{% endcapture %}
+        {% when '4' %}
+            {% capture month %}avril{% endcapture %}
+        {% when '5' %}
+            {% capture month %}mai{% endcapture %}
+        {% when '6' %}
+            {% capture month %}juin{% endcapture %}
+        {% when '7' %}
+            {% capture month %}juillet{% endcapture %}
+        {% when '8' %}
+            {% capture month %}août{% endcapture %}
+        {% when '9' %}
+            {% capture month %}septembre{% endcapture %}
+        {% when '10' %}
+            {% capture month %}octobre{% endcapture %}
+        {% when '11' %}
+            {% capture month %}novembre{% endcapture %}
+        {% when '12' %}
+            {% capture month %}décembre{% endcapture %}
+    {% endcase %}
 
-            %}</sup> of {%
+{% endif %}
 
-        endif %}{%
+{% capture year %}{{ include.date | date: "%Y" }}{% endcapture %}
 
-    endif %}{%
-
-    if page.lang == 'fr' %}{%
-
-        assign m = include.date | date: "%-m" %}{%
-
-        case m %}{%
-
-            when  '1'
-                %}janvier{%
-
-            when  '2'
-                %}février{%
-
-            when  '3'
-                %}mars{%
-
-            when  '4'
-                %}avril{%
-
-            when  '5'
-                %}mai{%
-
-            when  '6'
-                %}juin{%
-
-            when  '7'
-                %}juillet{%
-
-            when  '8'
-                %}août{%
-
-            when  '9'
-                %}septembre{%
-
-            when '10'
-                %}octobre{%
-
-            when '11'
-                %}novembre{%
-
-            when '12'
-                %}décembre{%
-
-        endcase %}{%
-
-    else
-
-        %}{{ include.date | date: "%B"}}{%
-
-    endif
-
-%}{{ include.date | date: " %Y"}}
+{% endcapture %}

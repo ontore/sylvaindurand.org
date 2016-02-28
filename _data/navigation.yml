@@ -4,7 +4,7 @@ en:
     url:   "/"
   journal:
     title: "journal"
-    url:   "/index.html"
+    url:   "/"
   about:
     title: "about"
     url:   "/about/"

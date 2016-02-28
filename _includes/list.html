@@ -1,10 +1,10 @@
 <ul class="list">{% assign posts=site.posts | where:"lang", page.lang | where:"type", posts %}{% for post in posts %}{% capture hide %}
-    {% capture currentmonth %}{{post.date | date: "%m/%Y"}}{% endcapture %}
+    {% capture currentmonth %}{{ post.date | date: "%m/%Y" }}{% endcapture %}
     {% endcapture %}{% if currentmonth != month %}{% unless forloop.first %}
     </ul>
   </li>{% endunless %}
   <li><h2>{% include date.html date=post.date %}{{ month }} {{ year }}</h2>
-    <ul>{% capture month %}{{currentmonth}}{% endcapture %}{% endif %}
+    <ul>{% capture month %}{{ currentmonth }}{% endcapture %}{% endif %}
       <li>
         <a href="{{ post.url }}">
           <div>{{ post.date | date: '%-d' }}</div> {{ post.title | replace: '<br/>', '' }}

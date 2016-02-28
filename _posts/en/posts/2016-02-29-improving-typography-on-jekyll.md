@@ -132,13 +132,13 @@ Finally, the following code provides all the typographical improvements presente
 ```
 {% endraw %}
 
-If your website is multilingual[[as explained, for example, in the article [Making *Jekyll* multilingual]({{site.base}}/making-jekyll-multilingual/)]], you can restrict the previous modifications to the French articles, by adding:
+If your website is multilingual[[as explained, for example, in the article [Making *Jekyll* multilingual]({{ site.base }}/making-jekyll-multilingual/)]], you can restrict the previous modifications to the French articles, by adding:
 
 {% raw %}
 ```html
 {% if page.lang == 'fr' %}
 ...
-{% endif%}
+{% endif %}
 ```
 {% endraw %}
 

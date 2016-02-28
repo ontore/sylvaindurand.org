@@ -6,7 +6,7 @@ redirect_from: /multilingual-website-with-jekyll/
 
 J<em>ekyll</em> has a very flexible design that allows a great freedom of choice, allowing the user to simply introduce features that are not integrated into its engine. This is particularly the case when one wants to create a multilingual website: while CMS remain very rigid and often require plugins, few filters are sufficient to achieve it with _Jekyll_.
 
-This article aims to present a way to create a multilingual site with _Jekyll_. _Jekyll_ have to be installed[[the article [Static website with *Jekyll*]({{site.base}}/static-website-with-jekyll/) explains how to install and use *Jekyll* in order to get a simple website]] on your computer and you should be able to know how to generate a simple website.
+This article aims to present a way to create a multilingual site with _Jekyll_. _Jekyll_ have to be installed[[the article [Static website with *Jekyll*]({{ site.base }}/static-website-with-jekyll/) explains how to install and use *Jekyll* in order to get a simple website]] on your computer and you should be able to know how to generate a simple website.
 
 ### Goals
 Our website can be translated in as many languages as wanted. In the following examples, it will have three languages: English, French, and Chinese. Each page may be translated or not in the various languages[[regardless of the version, they may be pages which are not translated in each language]]. On each page, the entire contents --- article, date, menus, URL --- must be in the same language.
@@ -139,7 +139,7 @@ Then, in order to emphase the actual version, just use CSS[[you need to declare 
 ### Translation of website elements
 Around the articles, it is also necessary to translate the various elements like menus, header, footer, some titles...
 
-To do so, we can provide translations into `_config.yml`[[since *Jekyll* 2.0, it is also possible to put the translations in the [_data](http://jekyllrb.com/docs/datafiles/) folder]]. Then, in the following example, {% raw %}`{{site.t[page.lang].home}}`{% endraw %} will generate `Home`, `Accueil` or `首页` depending of the page language:
+To do so, we can provide translations into `_config.yml`[[since *Jekyll* 2.0, it is also possible to put the translations in the [_data](http://jekyllrb.com/docs/datafiles/) folder]]. Then, in the following example, {% raw %}`{{ site.t[page.lang].home }}`{% endraw %} will generate `Home`, `Accueil` or `首页` depending of the page language:
 
 ```python
 t:
@@ -184,7 +184,7 @@ Then, you can generate the menu with a simple loop:
 ```html
 <ul>
   {% for menu in site.t[page.lang] %}
-    <li><a href="{{menu[1].url}}">{{menu[1].title}}</a></li>
+    <li><a href="{{ menu[1].url }}">{{ menu[1].title }}</a></li>
   {% endfor %}
 </ul>
 ```
@@ -234,7 +234,7 @@ We just have to use the following code:
   {% when '3' or '23' %}rd
 {% else %}th
 {% endcase %}</sup>
-of {{ page.date | date: "%B %Y"}}
+of {{ page.date | date: "%B %Y" }}
 {% endif %}
 
 {% if page.lang == 'fr' %}
@@ -253,7 +253,7 @@ of {{ page.date | date: "%B %Y"}}
   {% when '11' %}novembre
   {% when '12' %}décembre
 {% endcase %}
-{{ page.date | date: "%Y"}}
+{{ page.date | date: "%Y" }}
 {% endif %}
 ```
 {% endraw %}
@@ -275,7 +275,7 @@ You only have to provide in the `<head>` part of the page, every translation ava
 {% assign posts=site.posts | where:"name", page.name %}
 {% for post in posts %}
   {% if post.lang != page.lang %}
-    <link rel="alternate" hreflang="{{post.lang}}" href="{{post.url}}" />
+    <link rel="alternate" hreflang="{{ post.lang }}" href="{{ post.url }}" />
   {% endif %}
 {% endfor %}
 ```

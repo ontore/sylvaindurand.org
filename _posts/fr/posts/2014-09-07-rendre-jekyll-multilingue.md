@@ -6,7 +6,7 @@ redirect_from: /site-multilingue-avec-jekyll/
 
 J<em>ekyll</em> laisse une grande liberté de choix en permettant de mettre simplement en place des fonctionnalités qui ne sont pas prévues par son moteur. C'est notamment le cas lorsque l'on souhaite proposer son site en plusieurs langues : alors que la plupart des CMS sont très rigides ou nécessitent des plugins, quelques filtres suffisent ici pour obtenir le résultat désiré.
 
-Cet article a pour objectif de présenter une façon de créer un site multilingue avec *Jekyll*. Il suppose que celui-ci est bien installé[[l'article [Site statique avec *Jekyll*]({{site.base}}/site-statique-avec-jekyll/) décrit comment installer et utiliser *Jekyll* pour obtenir un site simple]] et que vous savez l'utiliser pour générer un site simple.
+Cet article a pour objectif de présenter une façon de créer un site multilingue avec *Jekyll*. Il suppose que celui-ci est bien installé[[l'article [Site statique avec *Jekyll*]({{ site.base }}/site-statique-avec-jekyll/) décrit comment installer et utiliser *Jekyll* pour obtenir un site simple]] et que vous savez l'utiliser pour générer un site simple.
 
 ### Objectifs
 Notre site pourra être traduit en autant de langues que souhaité ; dans les exemples qui suivront, il comptera trois langues : anglais, français et chinois. Chaque page pourra elle-même être traduite ou non dans ces différentes langues[[quelle que soit la langue, il peut exister des pages qui ne sont pas forcément traduites dans toutes les autres]]. Quelle que soit la page affichée, l'intégralité du contenu --- article, date, menus, URL --- doit être dans la même langue.
@@ -139,7 +139,7 @@ Pour emphaser la langue de la version affichée, il suffit d'utiliser CSS[[pour 
 ### Traduction des éléments du site
 En dehors du contenu des articles, il est également nécessaire de traduire les différents éléments qui composent le site : textes des menus, du haut et de bas de page, certains titres...
 
-Pour cela, on peut indiquer des traductions dans `_config.yml`[[depuis la deuxième version de *Jekyll*, il est également possible de placer ces informations dans le dossier [_data](http://jekyllrb.com/docs/datafiles/)]]. Ainsi, dans l'exemple suivant, {% raw %}`{{site.t[page.lang].home}}`{% endraw %} génèrera `Home`, `Accueil` ou `首页` selon la langue de la page :
+Pour cela, on peut indiquer des traductions dans `_config.yml`[[depuis la deuxième version de *Jekyll*, il est également possible de placer ces informations dans le dossier [_data](http://jekyllrb.com/docs/datafiles/)]]. Ainsi, dans l'exemple suivant, {% raw %}`{{ site.t[page.lang].home }}`{% endraw %} génèrera `Home`, `Accueil` ou `首页` selon la langue de la page :
 
 ```python
 t:
@@ -184,7 +184,7 @@ Le menu peut alors être généré à l'aide d'une boucle :
 ```html
 <ul>
   {% for menu in site.t[page.lang] %}
-    <li><a href="{{menu[1].url}}">{{menu[1].title}}</a></li>
+    <li><a href="{{ menu[1].url }}">{{ menu[1].title }}</a></li>
   {% endfor %}
 </ul>
 ```
@@ -234,7 +234,7 @@ Nous utilisons alors le code suivant :
   {% when '3' or '23' %}rd
 {% else %}th
 {% endcase %}</sup>
-of {{ page.date | date: "%B %Y"}}
+of {{ page.date | date: "%B %Y" }}
 {% endif %}
 
 {% if page.lang == 'fr' %}
@@ -253,7 +253,7 @@ of {{ page.date | date: "%B %Y"}}
   {% when '11' %}novembre
   {% when '12' %}décembre
 {% endcase %}
-{{ page.date | date: "%Y"}}
+{{ page.date | date: "%Y" }}
 {% endif %}
 ```
 {% endraw %}
@@ -275,7 +275,7 @@ Il suffit d'indiquer dans la partie `<head>` chaque page, l'ensemble des traduct
 {% assign posts=site.posts | where:"name", page.name %}
 {% for post in posts %}
   {% if post.lang != page.lang %}
-    <link rel="alternate" hreflang="{{post.lang}}" href="{{post.url}}" />
+    <link rel="alternate" hreflang="{{ post.lang }}" href="{{ post.url }}" />
   {% endif %}
 {% endfor %}
 ```

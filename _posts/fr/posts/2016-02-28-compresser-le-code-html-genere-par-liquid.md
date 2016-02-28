@@ -81,20 +81,20 @@ Le précédent code source deviendrait ainsi :
 
 Le code reste cependant un peu verbeux, et n'est pas très élégant.
 
-## Utiliser {% raw %} `%}{%`{% endraw %} , la solution ?
+## Utiliser {% raw %} ` %}{% `{% endraw %} , la solution ?
 
 Depuis *Jekyll* 3.0.0, il est possible d'insérer des sauts de lignes et des espaces *dans* les balises *Liquid*, qui n'auront aucun effet sur le code source généré. Il est donc possible d'identer son code ainsi :
 
 {% raw %}
 ```html
-<ul>{%
-for i in (1..12) %}{%
-  for j in (1..12) %}{%
-    assign result = i | times: j %}{%
+<ul>{% 
+for i in (1..12) %}{% 
+  for j in (1..12) %}{% 
+    assign result = i | times: j %}{% 
     if result == 12 %}
-    <li> {{ i }} ⨉ {{ j }} = 12 </li>{%
-    endif %}{%
-  endfor %}{%
+    <li> {{ i }} ⨉ {{ j }} = 12 </li>{% 
+    endif %}{% 
+  endfor %}{% 
 endfor %}
 </ul>
 ```

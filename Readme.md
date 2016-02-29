@@ -1,7 +1,7 @@
 #sylvaindurand.org [![Build Status](https://travis-ci.org/sylvaindurand/sylvaindurand.org.svg?branch=gh-pages)](https://travis-ci.org/sylvaindurand/sylvaindurand.org)
 
 
-This repository is the source code of the personnal website [sylvaindurand.org](http://sylvaindurand.org), built with *Jekyll*.
+This repository is the source code of the personnal website [sylvaindurand.org](https://sylvaindurand.org), built with *Jekyll*.
 
 ## Try this at home
 

@@ -8,9 +8,9 @@ $line: 30
 
 // Vertical rhythm
 
-=font($size)
+=font($size, $height:1)
   font-size: #{$size/$main}em
-  line-height: #{$line/$size}
+  line-height: #{$line/$size/$height}
 
 =padding($size,$top:0, $bottom:0, $lateral:0)
   padding: $top*$line/$size+em $lateral+em $bottom*$line/$size+em
@@ -46,7 +46,7 @@ img
   max-width: 31em
   +padding($main,0,0,1)
 
-h1, h2, hr, .date, .nav, .foot
+h1, h2, hr, .date, .original, .nav, .foot
   text-align: center
 
 p
@@ -146,7 +146,7 @@ h3
 
 // Other pages
 
-.date+p:first-letter
+.article p:first-of-type:first-letter
   float: left
   margin: 0.13em 0.05em 0 -0.05em
   font-size: 3.333em
@@ -156,10 +156,17 @@ sup
   font-size: 0.8em
 
 .date
-  +padding(19,2.5,1)
+  +padding(19,2,1)
   +font(19)
   font-style: italic
-  color: #ccc
+  color: #aaa
+
+.original
+  +padding(13,0,1)
+  +font(13,2)
+  margin-top: -$line/13+em
+  font-style: italic
+  color: #d4d4d4
 
 .article li
   padding-left: 2em

@@ -2,6 +2,7 @@
 title: Compresser le code <br/> généré par <em>Liquid</em>
 lang: fr
 redirect_from: /compresser-le-code-html-de-jekyll/
+original: 2014-10-19
 ---
 
 La syntaxe *Liquid*, notamment utilisée par *Jekyll*, a le désagréable défaut de générer des quantités importantes d'espaces et de sauts de ligne inutiles dans le code source de notre page.

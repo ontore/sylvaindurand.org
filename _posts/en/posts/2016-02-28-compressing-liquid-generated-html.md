@@ -2,6 +2,7 @@
 title: Compressing <em>Liquid</em> <br/> generated code
 lang: en
 redirect_from: /compressing-jekyll-generated-html/
+original: 2014-10-19
 ---
 
 The *Liquid* syntax, which is used by *Jekyll*, has an unpleasant default: it generates significant spaces and unneccessary line breaks in the generated pages source code.

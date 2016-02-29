@@ -2,6 +2,7 @@
 title: Making <em>Jekyll</em> <br/> multilingual
 lang: en
 redirect_from: /multilingual-website-with-jekyll/
+original: 2014-02-23
 ---
 
 J<em>ekyll</em> has a very flexible design that allows a great freedom of choice, allowing the user to simply introduce features that are not integrated into its engine. This is particularly the case when one wants to create a multilingual website: while CMS remain very rigid and often require plugins, few filters are sufficient to achieve it with _Jekyll_.
@@ -236,6 +237,8 @@ We just have to use the following code:
 
     {% if day == "1" %}
       {% capture sup %}<sup>er</sup>{% endcapture %}
+    {% else %}
+      {% capture sup %}{% endcapture %}
     {% endif %}
 
   {% endif %}

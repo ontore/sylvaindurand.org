@@ -34,8 +34,9 @@
 
 <div class="article">
 {% include date.html date=page.date %}{% if page.type != 'pages' %}
-<p class="date">{{ day }}{{ sup }} {{ month }} {{ year }}</p>
-{% endif %}
+<div class="date">{{ day }}{{ sup }} {{ month }} {{ year }}</div>{% endif %}
+{% if page.original %}{% include date.html date=page.original %}
+<div class="original">({{ site.data.translations[page.lang].original }} {{ day }}{{ sup }} {{ month }} {{ year }})</div>{% endif %}
 {% capture hide %}
   {% assign content = content | split: '<pre' %}
 
@@ -75,7 +76,7 @@
 
 </div>
 
-<div class="foot">
+<div class="foot">{% include date.html date=page.date %}
   {{ site.data.translations[page.lang].created }} <span>{{ day }}{{ sup }} {{ month }} {{ year }}</span> {{ site.data.translations[page.lang].author }} <a href="http://sylvaindurand.org/">Sylvain Durand</a>.
 </div>
 

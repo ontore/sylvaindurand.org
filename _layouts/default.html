@@ -5,8 +5,8 @@
   <meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=0.85">
   <meta name="description" content="{% if page.desc %}{{ page.desc }}{% else %}{{ page.excerpt | strip_html | strip_newlines | replace: "[[", " ("  | replace: "]]", ")" }}{% endif %}">
   <title>{{ page.title | strip_html }} – Sylvain Durand</title>
-  <link rel="icon" href="/medias/elements/favicon.ico" />
-  <link rel="alternate" href="/rss.xml" type="application/rss+xml" />
+  <link rel="icon" href="/medias/elements/favicon.ico">
+  <link rel="alternate" href="/rss.xml" type="application/rss+xml">
   <link rel="stylesheet" href="/style.css">{% capture hide %}
     {% assign posts=site.posts | where:"date", page.date %}
     {% for post in posts %}
@@ -16,7 +16,7 @@
       {% endif %}
     {% endfor %}
   {% endcapture %}{% if url %}
-  <link rel="alternate" hreflang="{{ lang }}" href="{{ url }}" />{% endif %}
+  <link rel="alternate" hreflang="{{ lang }}" href="{{ url }}">{% endif %}
 </head>
 
 <body class="{{ page.lang }}{% if page.type == 'pages' %} page{% endif %}">

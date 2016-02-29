@@ -8,106 +8,87 @@ J<em>ekyll</em> laisse une grande liberté de choix en permettant de mettre simp
 
 Cet article a pour objectif de présenter une façon de créer un site multilingue avec *Jekyll*. Il suppose que celui-ci est bien installé[[l'article [Site statique avec *Jekyll*]({{ site.base }}/site-statique-avec-jekyll/) décrit comment installer et utiliser *Jekyll* pour obtenir un site simple]] et que vous savez l'utiliser pour générer un site simple.
 
-### Objectifs
-Notre site pourra être traduit en autant de langues que souhaité ; dans les exemples qui suivront, il comptera trois langues : anglais, français et chinois. Chaque page pourra elle-même être traduite ou non dans ces différentes langues[[quelle que soit la langue, il peut exister des pages qui ne sont pas forcément traduites dans toutes les autres]]. Quelle que soit la page affichée, l'intégralité du contenu --- article, date, menus, URL --- doit être dans la même langue.
+Vous pourrez trouver un [exemple minimal de site multilingue sous *Jekyll*](https://github.com/sylvaindurand/multilingual-jekyll) hébergé sur [GitHub](https://github.com/sylvaindurand/multilingual-jekyll), basé sur cet article et prêt à l'emploi.
+
+## Objectifs
+
+La méthode permettra d'obtenir un site entièrement multilingue, tout en restant très flexible pour permettre à chacun d'en faire l'utilisation qu'il souhaite.
+
+### Une grande flexibilité
+
+Notre site pourra être traduit en autant de langues que souhaité. Chaque page pourra elle-même être traduite, ou non, dans une ou plusieurs langues[[quelle que soit la langue, il peut exister des pages qui ne sont pas forcément traduites dans toutes les autres]]. L'ensemble des pages et articles pourra être organisé sans contrainte.
+
+### Une traduction complète
+
+Quelle que soit la page affichée, l'intégralité du contenu doit être dans la même langue. Ce sera le cas des contenus, mais aussi du menu, de la date, des flux, ou encore de la typographie.
+
+### Sélecteur de langue
 
 Un sélecteur de langue tel que celui présent en haut à droite de ce site permettra pour chaque page d'indiquer la langue en cours et ses traductions disponibles[[les différents liens de ce sélecteur doivent renvoyer vers la traduction de la page en cours, et non vers la page d'accueil traduite]].
 
-Tout cela fonctionnera sans plugin, afin d'assurer une meilleure compatibilité avec les futures versions de *Jekyll* et de pouvoir générer le site en mode `safe` et donc l'héberger sur [GitHub Pages](https://pages.github.com/).
+### Indexation par les moteurs de recherche
+
+Les liens entre les différentes versions d'un même contenu doivent être connus des moteurs de recherche, qui pourront directement proposer aux utilisateurs un contenu dans leur langue.
+
+### Aucun plugin
+
+Tout cela fonctionnera sans plugin, afin d'assurer une meilleure compatibilité avec les futures versions de *Jekyll* et de pouvoir héberger le site sur [GitHub Pages](https://pages.github.com/).
+
 
 ## Principe
 
-### Organisation des fichiers
+La façon de procéder est particulièrement simple : nous allons indiquer, pour chaque article, sa langue (`lang`) et un identifiant unique (`ref`) permettant de faire le lien entre les différentes traductions. *Jekyll* se chargera du reste !
 
-L'intégralité des pages vont être rangées dans le dossier `_posts` à la racine de notre site. En son sein, créer un dossier par langue permet de rester organisé tout en définissant globalement la langue des articles[[il est tout à fait possible de ranger différemment les articles, mais il sera alors nécessaire de spécifier manuellement la langue de chaque article par la suite dans chaque entête]] :
-
-```r
-_config.yml
-_layouts/
-_posts/
-        en/
-                2014-09-01-hello-world.md
-                0000-01-01-index.md
-        fr/
-                2014-09-01-bonjour-monde.md
-                0000-01-01-journal.md
-        zh/
-                2014-09-01-你好世界.md
-                0000-01-01-首页.md
-```
-
-Au sein de ceux-ci, l'organisation des fichiers en sous-dossiers est entièrement libre. La seule contrainte est que tous les fichiers doivent avoir un nom de fichier indiquant la date, suivi de l'identifiant qui apparaîtra dans l'URL.
-
-Affectons alors une variable `lang` à chacun de ces dossiers[[il est également possible d'indiquer la langue dans les entêtes de chaque fichier]], ce qui nous permettra par la suite à détecter la langue et les traductions. Pour cela, nous indiquons dans `_config.yml` :
-
-```ruby
-defaults:
-  -
-    scope:
-      path: _posts/en
-    values:
-      layout: default
-      lang: en
-  -
-    scope:
-      path: _posts/fr
-    values:
-      layout: default
-      lang: fr
-  -
-    scope:
-      path: _posts/zh
-    values:
-      layout: default
-      lang: zh
-```
-
-### Choix des URL
-
-Par défaut, *Jekyll* génère les URL à partir du nom des fichiers, de la forme `/2014/09/01/bonjour-monde.html`. Comme sur ce site, il est possible[[les possibilités offertes sont présentées dans la [documentation](http://jekyllrb.com/docs/permalinks/) de *Jekyll*]] de n'afficher que `/bonjour-monde/` en ajoutant dans `_config.yml` :
-
-```ruby
-permalink: /:title/
-```
-
-Nous pouvons également spécifier individuellement une adresse pour chaque fichier en indiquant la variable `permalink` dans son entête[[c'est par exemple le cas pour la page d'accueil, que l'on place à la racine en indiquant `permalink: /` dans l'entête]].
-
-### Attribution d'un identifiant pour chaque article
-
-Jusqu'ici, rien ne relie les différentes versions d'une même page. Pour ce faire, nous pourrions utiliser :
-
- - *la date*, mais plusieurs articles différents pourraient avoir la même ou, au contraire, plusieurs versions d'un même article peuvent avoir deux dates différentes ;
- - *le nom du fichier*, mais il est préférable d'avoir des noms de fichiers différents pour traduire les URL.
-
-C'est pourquoi le plus simple est d'attribuer à chaque article un *identifiant* dont la valeur sera identique pour chaque version :
+Pour cela, on utilise des variables `lang` et `ref` dans l'entête de chaque article et de chaque page. Par exemple, pour l'anglais :
 
 ```python
 ---
-title: Bonjour monde !
-name: hello
+title: Hello world!
+lang: en
+ref: hello
 ---
 ```
 
-## Liens entre les deux traductions
+Puis en français :
+
+```python
+---
+title: Bonjour le monde !
+lang: fr
+ref: hello
+---
+```
+
+Et enfin, en chinois :
+
+```python
+---
+title: 你好，世界！
+lang: zh
+ref: hello
+---
+```
+
+## Liens entre les traductions
 
 ### Liste des articles par langue
 
-Les pages affichant la liste des articles ne doivent afficher que ceux qui sont dans la bonne langue, ce qui peut être atteint facilement grâce à la métadonnée `lang`. Le code suivant permet d'afficher l'ensemble des articles de la bonne langue :
+Les pages affichant la liste des articles ne doivent afficher que ceux qui sont dans la bonne langue, ce qui peut être atteint facilement grâce à la métadonnée `lang`.
+
+Le code suivant permet d'afficher les articles de la même langue que la page en cours :
 
 {% raw %}
 ```html
 {% assign posts=site.posts | where:"lang", page.lang %}
 <ul>
 {% for post in posts %}
-    <li class="lang">
-        <a href="{{ post.url }}" class="{{ post.lang }}">{{ post.title }}</a>
+    <li>
+        <a href="{{ post.url }}">{{ post.title }}</a>
     </li>
 {% endfor %}
 </ul>
 ```
 {% endraw %}
-
-Pour ne pas afficher certaines pages, comme par exemple celles qui listent les articles, il suffit d'indiquer "`type: pages`" dans leurs métadonnées et de rajouter dans `assign` la condition "`| where:"type", "posts"`".
 
 ### Sélecteur de langue
 
@@ -115,16 +96,25 @@ Pour créer un sélecteur de langue, comme celui présent en haut à droite de c
 
 {% raw %}
 ```html
-{% assign posts=site.posts | where:"name", page.name | sort: 'path' %}
 <ul>
+{% assign posts=site.posts | where:"ref", page.ref | sort: 'lang' %}
 {% for post in posts %}
-    <li class="lang">
-        <a href="{{ post.url }}" class="{{ post.lang }}">{{ post.lang }}</a>
-    </li>
+  <li>
+    <a href="{{ post.url }}" class="{{ post.lang }}">{{ post.lang }}</a>
+  </li>
+{% endfor %}
+
+{% assign pages=site.pages | where:"ref", page.ref | sort: 'lang' %}
+{% for page in pages %}
+  <li>
+    <a href="{{ page.url }}" class="{{ page.lang }}">{{ page.lang }}</a>
+  </li>
 {% endfor %}
 </ul>
 ```
 {% endraw %}
+
+Comme vous pouvez le voir, nous devons répéter le code : une fois pour les pages (`site.page`) et une fois pour les articles (`site.articles`). Il sera possible de réduire le code lorsque *Jekyll* prendra en charge *Liquid* 4.
 
 Pour emphaser la langue de la version affichée, il suffit d'utiliser CSS[[pour cela, il faut bien déclarer l'attribut `lang` de la balise `html` en indiquant `<html lang="{{ page.lang }}">` dans le *layout*]]. Par exemple, pour la mettre en gras :
 
@@ -184,7 +174,7 @@ Le menu peut alors être généré à l'aide d'une boucle :
 ```html
 <ul>
   {% for menu in site.t[page.lang] %}
-    <li><a href="{{ menu[1].url }}">{{ menu[1].title }}</a></li>
+    <li><a href="{{ menu[1].url }}">{{ menu[1].name }}</a></li>
   {% endfor %}
 </ul>
 ```
@@ -224,41 +214,92 @@ Nous utilisons alors le code suivant :
 
 {% raw %}
 ```python
-{% assign d = page.date | date: "%-d" %}
-{% assign m = page.date | date: "%-m" %}
+{% capture hide %}
 
-{% if page.lang == 'en' %}
-{{ d }}<sup>{% case d %}
-  {% when '1' or '21' or '31' %}st
-  {% when '2' or '22' %}nd
-  {% when '3' or '23' %}rd
-{% else %}th
-{% endcase %}</sup>
-of {{ page.date | date: "%B %Y" }}
+{% if include.mode != 'month' %}
+
+      {% assign day = include.date | date: "%-d" %}
+
+  {% if page.lang != 'fr' %}
+
+    {% case day %}
+      {% when '1' or '21' or '31' %}
+        {% capture sup %}<sup>st</sup> of{% endcapture %}
+      {% when '2' or '22' %}
+        {% capture sup %}<sup>nd</sup> of{% endcapture %}
+      {% when '3' or '23' %}
+        {% capture sup %}<sup>rd</sup> of{% endcapture %}
+      {% else %}
+        {% capture sup %}<sup>th</sup> of{% endcapture %}
+    {% endcase %}
+
+  {% else %}
+
+    {% if day == "1" %}
+      {% capture sup %}<sup>er</sup>{% endcapture %}
+    {% endif %}
+
+  {% endif %}
+
 {% endif %}
 
-{% if page.lang == 'fr' %}
-{{ d }}{% if d == "1" %}<sup>er</sup>{% endif %}
-{% case m %}
-  {% when '1' %}janvier
-  {% when '2' %}février
-  {% when '3' %}mars
-  {% when '4' %}avril
-  {% when '5' %}mai
-  {% when '6' %}juin
-  {% when '7' %}juillet
-  {% when '8' %}août
-  {% when '9' %}septembre
-  {% when '10' %}octobre
-  {% when '11' %}novembre
-  {% when '12' %}décembre
-{% endcase %}
-{{ page.date | date: "%Y" }}
+{% if page.lang != 'fr' %}
+
+  {% capture month %}{{ include.date | date: "%B" }}{% endcapture %}
+
+  {% else %}
+
+  {% assign m = include.date | date: "%-m" %}
+  {% case m %}
+    {% when '1' %}
+      {% capture month %}janvier{% endcapture %}
+    {% when '2' %}
+      {% capture month %}février{% endcapture %}
+    {% when '3' %}
+      {% capture month %}mars{% endcapture %}
+    {% when '4' %}
+      {% capture month %}avril{% endcapture %}
+    {% when '5' %}
+      {% capture month %}mai{% endcapture %}
+    {% when '6' %}
+      {% capture month %}juin{% endcapture %}
+    {% when '7' %}
+      {% capture month %}juillet{% endcapture %}
+    {% when '8' %}
+      {% capture month %}août{% endcapture %}
+    {% when '9' %}
+      {% capture month %}septembre{% endcapture %}
+    {% when '10' %}
+      {% capture month %}octobre{% endcapture %}
+    {% when '11' %}
+      {% capture month %}novembre{% endcapture %}
+    {% when '12' %}
+      {% capture month %}décembre{% endcapture %}
+  {% endcase %}
+
 {% endif %}
+
+{% capture year %}{{ include.date | date: "%Y" }}{% endcapture %}
+
+{% endcapture %}
 ```
 {% endraw %}
 
-Il est à nouveau possible de placer ce code dans un fichier `date.html` placé dans le dossier `_includes` pour pouvoir l'appeler simplement.
+On place ce code dans un fichier `date.html` placé dans le dossier `_includes` pour pouvoir l'appeler simplement avec :
+
+{% raw %}
+```html
+{% include date.html date=page.date %}
+```
+{% endraw %}
+
+Il suffit alors, pour avoir une date complète, d'utiliser le code :
+
+{% raw %}
+```html
+{{ day }}{{ sup }} {{ month }} {{ year }}
+```
+{% endraw %}
 
 ## Accès au site et référencement
 
@@ -272,11 +313,13 @@ Il suffit d'indiquer dans la partie `<head>` chaque page, l'ensemble des traduct
 
 {% raw %}
 ```html
-{% assign posts=site.posts | where:"name", page.name %}
+{% assign posts=site.posts | where:"ref", page.ref | sort: 'lang' %}
 {% for post in posts %}
-  {% if post.lang != page.lang %}
-    <link rel="alternate" hreflang="{{ post.lang }}" href="{{ post.url }}" />
-  {% endif %}
+  <link rel="alternate" hreflang="{{ post.lang }}" href="{{ post.url }}" />
+{% endfor %}
+{% assign pages=site.pages | where:"ref", page.ref | sort: 'lang' %}
+{% for page in pages %}
+  <link rel="alternate" hreflang="{{ page.lang }}" href="{{ page.url }}" />
 {% endfor %}
 ```
 {% endraw %}
@@ -298,15 +341,29 @@ permalink: /sitemaps.xml
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
   {% for post in site.posts %}
-  <url>
-    <loc>http://domain.tld{{ post.url }}</loc>
-    {% assign versions=site.posts|where:"name",post.name %}
-    {% for version in versions %}
-      <xhtml:link rel="alternate" hreflang="{{ version.lang }}" href="http://domain.tld{{ version.url }}" />
-    {% endfor %}
-    <lastmod>{{ post.date | date_to_xmlschema }}</lastmod>
-    <changefreq>weekly</changefreq>
-  </url>
+    {% if post.id contains "404" %}{% else %}
+      <url>
+        <loc>{{site.base}}{{ post.url }}</loc>
+        {% assign versions=site.posts | where:"ref", post.ref %}
+        {% for version in versions %}
+          <xhtml:link rel="alternate" hreflang="{{ version.lang }}" href="{{site.base}}{{ version.url }}" />
+        {% endfor %}
+        <lastmod>{{ post.date | date_to_xmlschema }}</lastmod>
+        <changefreq>weekly</changefreq>
+      </url>
+    {% endif %}
+  {% endfor %}
+  {% for page in site.pages %}
+    {% if page.id contains "404" %}{% else %}
+      <url>
+        <loc>{{site.base}}{{ page.url }}</loc>
+        {% assign versions=site.pages | where:"ref", page.ref %}
+        {% for version in versions %}
+          <xhtml:link rel="alternate" hreflang="{{ version.lang }}" href="{{site.base}}{{ version.url }}" />
+        {% endfor %}
+        <changefreq>weekly</changefreq>
+      </url>
+    {% endif %}
   {% endfor %}
 </urlset>
 ```

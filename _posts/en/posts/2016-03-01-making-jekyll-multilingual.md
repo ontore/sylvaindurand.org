@@ -207,8 +207,8 @@ To do so, we just have to use the following code, which we may then put in the `
 
 For the long format dates, it is possible to use date filters and replacements for any format. For example, we want to get:
 
-- in English : "1<sup>st</sup> of September 2014" ;
-- in French : "1<sup>er</sup> septembre 2014".
+- in English : "1<sup>st</sup> March 2016" ;
+- in French : "1<sup>er</sup> mars 2016".
 
 We just have to use the following code:
 
@@ -224,13 +224,13 @@ We just have to use the following code:
 
     {% case day %}
       {% when '1' or '21' or '31' %}
-        {% capture sup %}<sup>st</sup> of{% endcapture %}
+        {% capture sup %}<sup>st</sup>{% endcapture %}
       {% when '2' or '22' %}
-        {% capture sup %}<sup>nd</sup> of{% endcapture %}
+        {% capture sup %}<sup>nd</sup>{% endcapture %}
       {% when '3' or '23' %}
-        {% capture sup %}<sup>rd</sup> of{% endcapture %}
+        {% capture sup %}<sup>rd</sup>{% endcapture %}
       {% else %}
-        {% capture sup %}<sup>th</sup> of{% endcapture %}
+        {% capture sup %}<sup>th</sup>{% endcapture %}
     {% endcase %}
 
   {% else %}

@@ -8,13 +8,13 @@
 
         {% case day %}
             {% when '1' or '21' or '31' %}
-                {% capture sup %}<sup>st</sup> of{% endcapture %}
+                {% capture sup %}<sup>st</sup>{% endcapture %}
             {% when '2' or '22' %}
-                {% capture sup %}<sup>nd</sup> of{% endcapture %}
+                {% capture sup %}<sup>nd</sup>{% endcapture %}
             {% when '3' or '23' %}
-                {% capture sup %}<sup>rd</sup> of{% endcapture %}
+                {% capture sup %}<sup>rd</sup>{% endcapture %}
             {% else %}
-                {% capture sup %}<sup>th</sup> of{% endcapture %}
+                {% capture sup %}<sup>th</sup>{% endcapture %}
         {% endcase %}
 
     {% else %}

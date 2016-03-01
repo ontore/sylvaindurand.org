@@ -208,8 +208,8 @@ Pour cela, il suffit d'utiliser le code suivant, qu'il est possible ensuite de p
 
 Pour les dates longues, il est possible d'utiliser astucieusement les filtres de date et les remplacements pour obtenir n'importe quel format. Par exemple, si nous cherchons à obtenir :
 
-- en anglais : "1<sup>st</sup> of September 2014" ;
-- en français : "1<sup>er</sup> septembre 2014".
+- en anglais : "1<sup>st</sup> March 2016" ;
+- en français : "1<sup>er</sup> mars 2016".
 
 Nous utilisons alors le code suivant :
 
@@ -225,13 +225,13 @@ Nous utilisons alors le code suivant :
 
     {% case day %}
       {% when '1' or '21' or '31' %}
-        {% capture sup %}<sup>st</sup> of{% endcapture %}
+        {% capture sup %}<sup>st</sup>{% endcapture %}
       {% when '2' or '22' %}
-        {% capture sup %}<sup>nd</sup> of{% endcapture %}
+        {% capture sup %}<sup>nd</sup>{% endcapture %}
       {% when '3' or '23' %}
-        {% capture sup %}<sup>rd</sup> of{% endcapture %}
+        {% capture sup %}<sup>rd</sup>{% endcapture %}
       {% else %}
-        {% capture sup %}<sup>th</sup> of{% endcapture %}
+        {% capture sup %}<sup>th</sup>{% endcapture %}
     {% endcase %}
 
   {% else %}

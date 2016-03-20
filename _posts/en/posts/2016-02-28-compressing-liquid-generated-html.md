@@ -104,3 +104,8 @@ endfor %}
 Despite this unusual way to write  *Liquid* code, it remains quite readable and gives us the wanted result.
 
 However, I couldn't find if this behaviour is wanted by *Liquid* developers, and thus if it will be maintain in the future.
+
+
+## Compress *Jekyll* HTML output
+
+Have a look to the clever [penibelst](http://jch.penibelst.de/) method, which provides many options.

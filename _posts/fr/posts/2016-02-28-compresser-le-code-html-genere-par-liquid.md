@@ -104,3 +104,7 @@ endfor %}
 Cette façon d'écrire, bien qu'inhabituelle, reste très lisible et permet d'atteindre le résultat voulu.
 
 Cependant, je n'ai pas réussi à trouver si ce comportement est une fonctionnalité souhaitée des développeurs de *Liquid*, et donc s'il sera maintenu dans le temps.
+
+## Compresser l'ensemble du code HTML généré
+
+Jetez un coup d'œil à la méthode développée par [penibelst](http://jch.penibelst.de/), très intelligente et qui comporte de nombreuses options.

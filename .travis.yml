@@ -7,7 +7,7 @@ install:
 
 script:
   - jekyll build
-  - htmlproofer --check-html ./_site
+  - htmlproofer --check-html --empty-alt-ignore ./_site
 
 branches:
   only:

@@ -1,7 +1,6 @@
 ---
 title: Servir son site <br/> avec <em>Cloudfront</em>
 lang: fr
-redirect_from: /site-statique-avec-cloudfront/
 original: 2014-03-05
 ---
 

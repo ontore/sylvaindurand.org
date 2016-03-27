@@ -1,7 +1,6 @@
 ---
 title: Compresser le code <br/> généré par <em>Liquid</em>
 lang: fr
-redirect_from: /compresser-le-code-html-de-jekyll/
 original: 2014-10-19
 ---
 

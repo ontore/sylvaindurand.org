@@ -1,7 +1,6 @@
 ---
 title: Website delivery <br/> with <em>Cloudfront</em>
 lang: en
-redirect_from: /static-website-with-cloudfront/
 original: 2014-03-05
 ---
 

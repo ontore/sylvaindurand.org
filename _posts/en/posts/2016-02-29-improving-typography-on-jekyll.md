@@ -1,7 +1,6 @@
 ---
 title: Improving typography <br/> on <em>Jekyll</em>
 lang: en
-redirect_from: /improving-typography-with-jekyll/
 original: 2014-10-30
 ---
 

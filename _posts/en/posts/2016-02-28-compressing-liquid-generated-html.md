@@ -1,7 +1,6 @@
 ---
 title: Compressing <em>Liquid</em> <br/> generated code
 lang: en
-redirect_from: /compressing-jekyll-generated-html/
 original: 2014-10-19
 ---
 

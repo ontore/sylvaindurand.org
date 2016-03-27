@@ -1,7 +1,6 @@
 ---
 title: Améliorer la typographie <br/> sous <em>Jekyll</em>
 lang: fr
-redirect_from: /ameliorer-la-typographie-avec-jekyll/
 original: 2014-10-30
 ---
 
